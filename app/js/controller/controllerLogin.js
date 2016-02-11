@@ -1,13 +1,10 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('LoginCtrl', function ($scope, $location) {
+app.controller('LoginCtrl', function ($scope, $location, serviceConstants, serviceUser, $http) {
 
-    /*$scope.makeLogin = function(){
-
-        var data = {email: 'evertoncastro.sp@gmail.com', password: '123456'};
-
-        serviceLogin.makeLogin(data).then(
+    $scope.makeLogin = function(data){
+        serviceUser.makeLogin(data).then(
             function(result){
                 console.log(result);
             },
@@ -17,7 +14,5 @@ app.controller('LoginCtrl', function ($scope, $location) {
         );
 
     };
-
-    $scope.makeLogin();*/
 
 });

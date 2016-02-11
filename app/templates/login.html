@@ -9,9 +9,9 @@
                             <img class="profile-img" src="img/login/icon_lock.png"
                                  alt="">
                             <form class="form-signin">
-                                <input type="text" class="form-control" placeholder="Email" required autofocus>
-                                <input type="password" class="form-control" placeholder="Password" required>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                                <input type="email" class="form-control" placeholder="Email" ng-model="data.email" required autofocus>
+                                <input type="password" class="form-control" placeholder="Password" ng-model="data.password" required>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="makeLogin(data)">Entrar</button>
                             </form>
                         </div>
                         <a href="#" class="text-center new-account">Criar conta </a>

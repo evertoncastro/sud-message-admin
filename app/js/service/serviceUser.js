@@ -1,10 +1,8 @@
 /**
  * Created by everton on 03/02/16.
  */
-/*
-var app = angular.module('website');
 
-app.service('serviceUser', function($q, $http, serviceConstants){
+app.service('serviceUser', function($q, $http, serviceConstants, $route){
 
     return{
 
@@ -13,10 +11,13 @@ app.service('serviceUser', function($q, $http, serviceConstants){
             var URL = serviceConstants.URL_LOGIN;
 
             var json = {email: data.email, password: data.password};
-
             $http.post(URL, json).then(
                 function(result){
+                    if(result && result.data.status=='OK'){
+                        $route.go
+                    }
                     defer.resolve(result);
+
                 },
                 function(error){
                     defer.reject(error);
@@ -27,4 +28,4 @@ app.service('serviceUser', function($q, $http, serviceConstants){
         }
 
     }
-});*/
+});
