@@ -18,6 +18,8 @@ app.service('serviceUser', function($q, $http, serviceConstants, $location, serv
                         serviceGlobalVariables.setUserData(user);
                         $rootScope.showMenu = true;
                         $location.path('/home');
+                    }else{
+                        callSweetAlert(serviceConstants.MSG_ALERT_FAIL_LOGIN);
                     }
                     defer.resolve(result);
 
@@ -28,6 +30,12 @@ app.service('serviceUser', function($q, $http, serviceConstants, $location, serv
             );
 
             return defer.promise;
+        },
+
+        makeLogout: function(){
+            serviceGlobalVariables.setUserData(undefined);
+            $rootScope.showMenu = false;
+            $location.path('/');
         }
     }
 });

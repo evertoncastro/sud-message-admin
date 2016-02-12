@@ -18,13 +18,6 @@ app.config(function ($routeProvider, $httpProvider) {
 });
 
 
-app.controller('HomeCtrl', function ($scope, $location, serviceConstants) {
-    $scope.init = function(){
-
-    };
-
-    $scope.init();
-});
 
 app.controller('SobreCtrl', function ($scope, $location) {
 
