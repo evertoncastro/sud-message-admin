@@ -1,12 +1,12 @@
 /**
  * Created by everton on 03/02/16.
  */
-/*
+
 var app = angular.module('website');
 
 app.service('serviceGlobalVariables', function(){
 
-    var userData = {};
+    var userData = undefined;
 
     return{
 
@@ -18,4 +18,4 @@ app.service('serviceGlobalVariables', function(){
             return userData;
         }
     }
-});*/
+});

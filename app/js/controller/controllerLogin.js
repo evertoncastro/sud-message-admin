@@ -1,7 +1,14 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('LoginCtrl', function ($scope, $location, serviceConstants, serviceUser) {
+app.controller('LoginCtrl', function ($scope, $location, serviceConstants, serviceUser, serviceGlobalVariables) {
+
+    $scope.init = function(){
+        var user = serviceGlobalVariables.getUserData();
+        if(user){
+            $location.path('/home');
+        }
+    };
 
     $scope.makeLogin = function(data){
         serviceUser.makeLogin(data).then(
@@ -14,5 +21,7 @@ app.controller('LoginCtrl', function ($scope, $location, serviceConstants, servi
         );
 
     };
+
+    $scope.init();
 
 });

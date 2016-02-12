@@ -2,7 +2,7 @@
  * Created by everton on 03/02/16.
  */
 
-app.service('serviceUser', function($q, $http, serviceConstants, $window, $location){
+app.service('serviceUser', function($q, $http, serviceConstants, $location, serviceGlobalVariables, $rootScope){
 
     return{
 
@@ -14,7 +14,9 @@ app.service('serviceUser', function($q, $http, serviceConstants, $window, $locat
             $http.post(URL, json).then(
                 function(result){
                     if(result && result.data.status=='OK'){
-                        //$window.location.href = '/sud-message-admin/app/index.html#/home';
+                        var user = result.data.user_data;
+                        serviceGlobalVariables.setUserData(user);
+                        $rootScope.showMenu = true;
                         $location.path('/home');
                     }
                     defer.resolve(result);
@@ -27,6 +29,5 @@ app.service('serviceUser', function($q, $http, serviceConstants, $window, $locat
 
             return defer.promise;
         }
-
     }
 });

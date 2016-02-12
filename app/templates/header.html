@@ -4,24 +4,24 @@
 <div class="address-bar"></div>
 
 <!-- Navigation -->
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation" ng-controller="HeaderCtrl">
     <div class="container">
         <!-- aparecerá somente em dispositivos mobile -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <!-- Nome da empresa ou titulo do site para os dispositivos mobile -->
-            <a class="navbar-brand" href="../../index.html">Mural SUD</a>
+            <a class="navbar-brand">Mural SUD</a>
         </div>
         <!-- nossos menu -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" ng-if="showMenu">
                 <!-- cada linha é um item do menu -->
-                <li><a href="#/">Entrar</a></li>
                 <li><a href="#/home">Home</a></li>
                 <li><a href="#/servicos">Serviços</a></li>
                 <li><a href="#/precos">Preços</a></li>
