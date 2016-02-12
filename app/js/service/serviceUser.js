@@ -2,7 +2,7 @@
  * Created by everton on 03/02/16.
  */
 
-app.service('serviceUser', function($q, $http, serviceConstants, $route){
+app.service('serviceUser', function($q, $http, serviceConstants, $window, $location){
 
     return{
 
@@ -14,7 +14,8 @@ app.service('serviceUser', function($q, $http, serviceConstants, $route){
             $http.post(URL, json).then(
                 function(result){
                     if(result && result.data.status=='OK'){
-                        $route.go
+                        //$window.location.href = '/sud-message-admin/app/index.html#/home';
+                        $location.path('/home');
                     }
                     defer.resolve(result);
 
