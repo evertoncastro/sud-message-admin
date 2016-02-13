@@ -10,5 +10,13 @@
 .box-image-preview{
     height: auto !important;
     max-height: 200px;
+    max-width: 100%;
     width: auto;
+}
+
+.button-tab-area{
+    text-align: center;
+}
+.button-tab{
+    width: 130px;
 }
