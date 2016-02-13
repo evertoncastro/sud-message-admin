@@ -13,17 +13,39 @@
 
 <div class="row">
     <!--Take from: http://v4-alpha.getbootstrap.com/components/forms/-->
-    <form>
+    <form class="form-create-message">
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Título da mensagem</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="data.title">
             <!--<small class="text-muted">We'll never share your email with anyone else.</small>-->
         </fieldset>
         <fieldset class="form-group">
             <label for="exampleTextarea">Mensagem</label>
-            <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="6" ng-model="data.text"></textarea>
         </fieldset>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <fieldset class="form-group">
+            <label for="exampleInputEmail1">Imagem</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="data.image">
+            <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
+            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+        </fieldset>
+
+        <button type="submit" class="btn btn-primary" ng-click="registerMessage(data)">
+            Enviar
+        </button>
     </form>
+</div>
+
+<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <div class="list-group" ng-repeat="message in listMessage">
+                <a href="#" class="list-group-item">
+                    <h4 class="list-group-item-heading">{{message.title}}</h4>
+                    <p class="list-group-item-text">List Group Item Text</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

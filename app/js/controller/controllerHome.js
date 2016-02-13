@@ -1,7 +1,8 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('HomeCtrl', function ($scope, $location, serviceConstants, serviceUser, serviceGlobalVariables) {
+app.controller('HomeCtrl', function ($scope, $location, serviceConstants, serviceUser, serviceGlobalVariables, $timeout) {
+
 
     $scope.init = function(){
         var user = serviceGlobalVariables.getUserData();

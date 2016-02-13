@@ -15,6 +15,7 @@ app.service('serviceUser', function($q, $http, serviceConstants, $location, serv
                 function(result){
                     if(result && result.data.status=='OK'){
                         var user = result.data.user_data;
+                        user.token = result.data.token;
                         serviceGlobalVariables.setUserData(user);
                         $rootScope.showMenu = true;
                         $location.path('/home');

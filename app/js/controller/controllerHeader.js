@@ -4,6 +4,7 @@
 app.controller('HeaderCtrl', function ($scope, $rootScope, serviceUser) {
 
     $rootScope.showMenu = false;
+    $rootScope.user = undefined;
 
     $scope.logout = function(){
         serviceUser.makeLogout();
