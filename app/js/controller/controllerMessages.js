@@ -3,6 +3,8 @@
  */
 app.controller('MessagesCtrl', function ($scope, $location, serviceMessage) {
 
+    $scope.showMessage = undefined;
+
     $scope.registerMessage = function(message){
         serviceMessage.registerMessage(message);
     };
@@ -13,6 +15,14 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage) {
                 $scope.listMessage = result;
             }
         );
+    };
+
+    $scope.openMessage = function(index){
+        if($scope.showMessage || $scope.showMessage==0){
+            $scope.showMessage = undefined;
+        }else{
+            $scope.showMessage = index;
+        }
     };
 
     $scope.init();

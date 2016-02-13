@@ -2,3 +2,13 @@
 .form-create-message{
     padding: 0px 20px;
 }
+
+.form-update-message {
+    padding: 10px 0px;
+}
+
+.box-image-preview{
+    height: auto !important;
+    max-height: 200px;
+    width: auto;
+}
