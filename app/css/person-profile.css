@@ -11,3 +11,23 @@
 .edit-title{
     text-align: center !important;
 }
+
+.image-person-list{
+    display: inline-block !important;
+    border-radius: 10% !important;
+    margin: 0px 0px 0px 0px !important;
+}
+
+.user-info-list{
+    display: inline-block !important;
+}
+
+.list-item{
+    position: relative !important;
+}
+
+.button-go-edit-person{
+    position: absolute !important;
+    right: 5px !important;
+    bottom: 5px !important;
+}

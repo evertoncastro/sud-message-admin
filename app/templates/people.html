@@ -29,9 +29,9 @@
     <div class="container">
         <div id="products" class="row list-group">
             <div class="item  col-xs-12 col-lg-12" ng-repeat="user in users">
-                <div class="thumbnail">
-                    <img class="group list-group-image" ng-src="{{user.image}}" alt="" />
-                    <div class="caption">
+                <div class="thumbnail list-item">
+                    <img class="group list-group-image image-person-list" ng-src="{{user.image}}" alt="" />
+                    <div class="caption user-info-list">
                         <h4 class="group inner list-group-item-heading">{{user.exibitionName}}</h4>
                         <p class="group inner list-group-item-text">
                             Ala</p>
@@ -41,8 +41,9 @@
                                     $21.000</p>
                             </div>-->
                             <div class="col-xs-12 col-md-6">
-                                <a class="btn btn-success" ng-click="goToPersonDetail(user)">Editar</a>
+
                             </div>
+                            <a class="btn btn-success button-go-edit-person" ng-click="goToPersonDetail(user)">Editar</a>
                         </div>
                     </div>
                 </div>

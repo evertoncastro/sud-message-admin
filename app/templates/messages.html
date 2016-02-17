@@ -34,6 +34,14 @@
             <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
         </fieldset>
 
+        <fieldset class="form-group">
+            <label>Pessoa:</label>
+            <select class="form-control" ng-model="data.personUrlSafe"
+                    ng-options="p.urlsafe as p.exibitionName for p in peopleList">
+                <option value="" selected>Selecione uma pessoa relacionada</option>
+            </select>
+        </fieldset>
+
         <button type="submit" class="btn btn-primary" ng-click="registerMessage(data)">
             Criar
         </button>

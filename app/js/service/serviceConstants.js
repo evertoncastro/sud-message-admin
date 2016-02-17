@@ -7,7 +7,7 @@ app.service('serviceConstants', function(){
     return{
         URL_LOGIN: 'http://sudmural.appspot.com/doLogin',
         URL_REGISTER_MESSAGE: 'http://sudmural.appspot.com/registerMessage',
-        URL_LOAD_MESSAGE_BY_USER: 'http://sudmural.appspot.com/loadMessageByUser',
+        URL_LOAD_MESSAGE: 'http://sudmural.appspot.com/loadMessage',
         URL_LOAD_PERSON_LIST: 'http://sudmural.appspot.com/loadPersonList',
         URL_UPDATE_PERSON: 'http://sudmural.appspot.com/updatePerson',
         URL_REGISTER_PERSON: 'http://sudmural.appspot.com/registerPerson',

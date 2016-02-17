@@ -15,7 +15,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var status = this.validateData(message, userData);
             if(status){
                 var json = {title: message.title, text: message.text, image: message.image,
-                    userGlobalInfoUrlSafe: userData.userGlobalInfoUrlSafe, token: userData.token};
+                    personUrlSafe: message.personUrlSafe, token: userData.token};
                 var URL = serviceConstants.URL_REGISTER_MESSAGE;
                 $http.post(URL, json).then(
                     function(result){
@@ -32,29 +32,22 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
         },
 
 
-        loadMessageByUser: function(){
+        loadMessage: function(){
             var defer = $q.defer();
-            var userData = serviceGlobalVariables.getUserData();
-
-            if(userData && userData.token){
-                var json = {token: userData.token};
-                var URL = serviceConstants.URL_LOAD_MESSAGE_BY_USER;
-                $http.post(URL, json).then(
-                    function(result){
-                        if(result && result.data){
-                            defer.resolve(result.data);
-                        }else{
-                            defer.resolve([]);
-                        }
-                    },
-                    function(error){
-                        defer.reject(error);
-                        callSweetAlert();
+            var URL = serviceConstants.URL_LOAD_MESSAGE;
+            $http.get(URL).then(
+                function(result){
+                    if(result && result.data){
+                        defer.resolve(result.data);
+                    }else{
+                        defer.resolve([]);
                     }
-                );
-            }else{
-                callSweetAlert();
-            }
+                },
+                function(error){
+                    defer.reject(error);
+                    callSweetAlert();
+                }
+            );
 
             return defer.promise;
         },

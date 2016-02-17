@@ -1,7 +1,7 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('MessagesCtrl', function ($scope, $location, serviceMessage) {
+app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, servicePeople) {
 
     $scope.showMessage = undefined;
     $scope.showTabMessages = true;
@@ -9,9 +9,15 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage) {
     $scope.buttonTitle = 'Criar mensagem';
 
     $scope.init = function(){
-        serviceMessage.loadMessageByUser().then(
+        serviceMessage.loadMessage().then(
             function(result){
                 $scope.listMessage = result;
+            }
+        );
+
+        servicePeople.loadPeopleList().then(
+            function(data){
+                $scope.peopleList = data;
             }
         );
     };
