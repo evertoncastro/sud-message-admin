@@ -12,7 +12,7 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/home", {templateUrl: "templates/home.html", controller: "HomeCtrl"})
         .when("/sobre", {templateUrl: "templates/sobre.html", controller: "SobreCtrl"})
         .when("/messages", {templateUrl: "templates/messages.html", controller: "MessagesCtrl"})
-        .when("/precos", {templateUrl: "templates/precos.html", controller: "PrecosCtrl"})
+        .when("/people", {templateUrl: "templates/people.html", controller: "PeopleCtrl"})
         .when('/404', {templateUrl: "templates/404.html"})
         .otherwise("/404");
 });
