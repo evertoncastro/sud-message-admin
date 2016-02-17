@@ -8,6 +8,9 @@
             <hr>
         </div>
     </div>
+    <div class="button-tab-area">
+        <button class="btn btn-primary button-tab" ng-click="goToNewPerson()" >Nova pessoa</button>
+    </div>
 </div>
 
 <!--<div class="row">
@@ -38,7 +41,7 @@
                                     $21.000</p>
                             </div>-->
                             <div class="col-xs-12 col-md-6">
-                                <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                                <a class="btn btn-success" ng-click="goToPersonDetail(user)">Editar</a>
                             </div>
                         </div>
                     </div>
@@ -56,9 +59,9 @@
             <!-- left column -->
             <div class="col-md-3">
                 <div class="text-center">
-                    <img src="//placehold.it/100" class="avatar img-circle avatar-edit" alt="avatar">
+                    <img ng-src="{{data.image}}" class="avatar img-circle avatar-edit" alt="avatar">
 
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" ng-model="data.image">
                 </div>
                 <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
                 <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
@@ -76,27 +79,27 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Primeiro nome:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" ng-model="data.firstname" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Sobrenome:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" ng-model="data.lastname" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Nome de exibição:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" type="text" value="">
+                            <input class="form-control" ng-model="data.exibitionName" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" value="Save Changes">
+                            <input type="button" class="btn btn-primary" ng-click="registerPerson(data)" value="Enviar">
                             <span></span>
-                            <input type="reset" class="btn btn-default" value="Cancel">
+                            <input type="reset" class="btn btn-default" ng-click="returnToList()" value="Voltar">
                         </div>
                     </div>
                 </form>
