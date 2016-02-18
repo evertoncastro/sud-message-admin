@@ -8,6 +8,8 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, serv
     $scope.tabTitle = 'MINHAS MENSAGENS';
     $scope.buttonTitle = 'Criar mensagem';
 
+    $scope.listStatus = [{text: 'Inativa', value: '0'}, {text: 'Ativa', value: '1'}];
+
     $scope.init = function(){
         serviceMessage.loadMessage().then(
             function(result){

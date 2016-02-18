@@ -35,10 +35,23 @@
         </fieldset>
 
         <fieldset class="form-group">
+            <label for="exampleInputEmail1">Visualizador</label>
+            <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{data.image}}">
+        </fieldset>
+
+        <fieldset class="form-group">
             <label>Pessoa:</label>
             <select class="form-control" ng-model="data.personUrlSafe"
-                    ng-options="p.urlsafe as p.exibitionName for p in peopleList">
+                    ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
                 <option value="" selected>Selecione uma pessoa relacionada</option>
+            </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>Status:</label>
+            <select class="form-control" ng-model="data.status"
+                    ng-options="s.value as s.text for s in listStatus">
+                <option value="" selected>Selcione</option>
             </select>
         </fieldset>
 
@@ -79,6 +92,22 @@
                     <fieldset class="form-group">
                         <label for="exampleInputEmail1">Visualizador</label>
                         <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{message.image}}">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label>Pessoa:</label>
+                        <select class="form-control" ng-model="message.personUrlSafe"
+                                ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
+                            <option value="" selected>Selecione uma pessoa relacionada</option>
+                        </select>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label>Status:</label>
+                        <select class="form-control" ng-model="message.status"
+                                ng-options="s.value as s.text for s in listStatus">
+                            <option value="" selected>Selecione</option>
+                        </select>
                     </fieldset>
 
                     <button type="submit" class="btn btn-primary" ng-click="registerMessage(data)">

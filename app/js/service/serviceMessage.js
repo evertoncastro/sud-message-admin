@@ -15,7 +15,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var status = this.validateData(message, userData);
             if(status){
                 var json = {title: message.title, text: message.text, image: message.image,
-                    personUrlSafe: message.personUrlSafe, token: userData.token};
+                    status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token};
                 var URL = serviceConstants.URL_REGISTER_MESSAGE;
                 $http.post(URL, json).then(
                     function(result){
