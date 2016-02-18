@@ -14,58 +14,66 @@ app.service('serviceConstants', function(){
         URL_REGISTER_PERSON: 'http://sudmural.appspot.com/registerPerson',
 
 
+        MSG_EMPTY_MESSAGE_TITLE: {
+            text: "Informe o título da mensagem!",
+            title: "Tente novamente!"
+        },
+        MSG_EMPTY_MESSAGE_TEXT: {
+            text: "O texto da mensagem está vazio!",
+            title: "Tente novamente!"
+        },
+        MSG_EMPTY_MESSAGE_PEOPLE: {
+            text: "Selecione uma pessoa responsável pela mensagem!",
+            title: "Tente novamente!"
+        },
+        MSG_EMPTY_MESSAGE_STATUS: {
+            text: "Selecione um status para a mensagem",
+            title: "Tente novamente!"
+        },
+
         MSG_ALERT_FAIL_LOGIN: {
-            title: "E-mail ou senha foram informados incorretamente.",
-            text: "Tente novamente!",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "E-mail ou senha foram informados incorretamente.",
+            title: "Tente novamente!"
         },
 
         MSG_ALERT_SUCCESS_REGISTER_MESSAGE: {
-            title: "Mensagem criada com sucesso!",
-            text: "Parabéns :)",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Mensagem criada com sucesso!",
+            title: "Parabéns :)"
         },
 
         MSG_ALERT_FAILURE_REGISTER_MESSAGE: {
-            title: "Houve um erro ao criar mensagem!",
-            text: "Tente novamente!",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Houve um erro ao criar mensagem!",
+            title: "Tente novamente!"
         },
 
         MSG_ALERT_SUCCESS_UPDATE_MESSAGE: {
-            title: "Dados atualizados com sucesso!",
-            text: "Parabéns :)",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Dados atualizados com sucesso!",
+            title: "Parabéns :)"
         },
 
         MSG_ALERT_FAILURE_UPDATE_MESSAGE: {
-            title: "Houve um erro atualizar dados!",
-            text: "Tente novamente!",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Houve um erro atualizar dados!",
+            title: "Tente novamente!"
         },
 
         MSG_ALERT_SUCCESS_REGISTER_PERSON: {
-            title: "Pessoa criada com sucesso!",
-            text: "Parabéns :)",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Pessoa criada com sucesso!",
+            title: "Parabéns :)"
         },
 
         MSG_ALERT_FAILURE_REGISTER_PERSON: {
-            title: "Houve um erro ao criar pessoa!",
-            text: "Tente novamente!",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Houve um erro ao criar pessoa!",
+            title: "Tente novamente!"
         },
 
         MSG_ALERT_SUCCESS_UPDATE_PERSON: {
-            title: "Dados atualizados com sucesso!",
-            text: "Parabéns :)",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Dados atualizados com sucesso!",
+            title: "Parabéns :)"
         },
 
         MSG_ALERT_FAILURE_UPDATE_PERSON: {
-            title: "Houve um erro ao atualizar dados!",
-            text: "Tente novamente!",
-            showCancelButton: false, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
+            text: "Houve um erro ao atualizar dados!",
+            title: "Tente novamente!"
         }
 
     }

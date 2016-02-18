@@ -45,11 +45,11 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                 $http.post(URL, json).then(
                     function(result){
                         defer.resolve(result);
-                        callSweetAlert(successMessage);
+                        callSweetAlert(successMessage.title, successMessage.text);
                     },
                     function(error){
                         defer.reject(error);
-                        callSweetAlert(failMessage);
+                        callSweetAlert(failMessage.title, failMessage.text);
                     }
                 );
             }

@@ -4,7 +4,7 @@
 
 var app = angular.module('website');
 
-app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants){
+app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil){
 
     var uploadMode = 'edit';
 
@@ -23,7 +23,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var self = this;
             var userData = serviceGlobalVariables.getUserData();
             var operation = self.getUploadMode();
-            var status = this.validateData(message, userData);
+            var status = this.validateData(message);
             if(status){
                 var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
                     status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token};
@@ -42,11 +42,11 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
                 $http.post(URL, json).then(
                     function(result){
                         defer.resolve(result);
-                        callSweetAlert(successMessage);
+                        callSweetAlert(successMessage.title, successMessage.text);
                     },
                     function(error){
                         defer.reject(error);
-                        callSweetAlert(failMessage);
+                        callSweetAlert(failMessage.title, failMessage.text);
                     }
                 );
             }
@@ -74,8 +74,27 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             return defer.promise;
         },
 
-        validateData: function(message, userData){
-            return true;
+        validateData: function(message){
+            var status = true;
+
+            if(!message || serviceUtil.isEmpty(message.title)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_TITLE.title, serviceConstants.MSG_EMPTY_MESSAGE_TITLE.text);
+            }
+            else if(!message || serviceUtil.isEmpty(message.text)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_TEXT.title, serviceConstants.MSG_EMPTY_MESSAGE_TEXT.text);
+            }
+            else if(!message || serviceUtil.isEmpty(message.personUrlSafe)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_PEOPLE.title, serviceConstants.MSG_EMPTY_MESSAGE_PEOPLE.text);
+            }
+            else if(!message || serviceUtil.isEmpty(message.status)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_STATUS.title, serviceConstants.MSG_EMPTY_MESSAGE_STATUS.text);
+            }
+
+            return status;
         }
 
 
