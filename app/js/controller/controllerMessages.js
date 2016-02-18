@@ -41,10 +41,12 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, serv
             $scope.showTabMessages = false;
             $scope.tabTitle = 'CRIAR MENSAGEM';
             $scope.buttonTitle = 'Voltar';
+            serviceMessage.setUploadMode('new');
         }else{
             $scope.showTabMessages = true;
             $scope.tabTitle = 'MINHAS MENSAGENS';
             $scope.buttonTitle = 'Criar mensagem';
+            serviceMessage.setUploadMode('edit');
         }
     };
 
