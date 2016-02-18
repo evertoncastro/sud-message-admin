@@ -67,7 +67,7 @@
             <div class="list-group" ng-repeat="message in listMessage track by $index">
                 <a class="list-group-item" ng-click="openMessage($index)">
                     <h4 class="list-group-item-heading">{{message.title}}</h4>
-                    <p class="list-group-item-text">List Group Item Text</p>
+                    <p class="list-group-item-text">{{message.dateCreation}}</p>
                 </a>
 
                 <!--Take from: http://v4-alpha.getbootstrap.com/components/forms/-->
