@@ -78,6 +78,32 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
             return defer.promise;
         },
 
+        loadPersonByUnity: function(unity){
+            var defer = $q.defer();
+            var unityUrlSafe = undefined;
+            if(unity){
+                unityUrlSafe = unity;
+                var URL = serviceConstants.URL_LOAD_PERSON_BY_UNITY;
+                var json = {unityUrlSafe: unityUrlSafe};
+                $http.post(URL, json).then(
+                    function(result) {
+                        if(result && result.data && result.data.length>0){
+                            defer.resolve(result.data);
+                        }else{
+                            defer.resolve([]);
+                            callSweetAlert(serviceConstants.MSG_NO_PERSON_FOR_UNITY.title, serviceConstants.MSG_NO_PERSON_FOR_UNITY.text);
+                        }
+                    },
+                    function(error){
+                        defer.reject(error);
+                    }
+                );
+            }
+
+
+            return defer.promise;
+        },
+
         validateData: function(message, userData){
             return true;
         }
