@@ -15,20 +15,14 @@ app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeopl
                 $scope.listUnity = data;
             }
         );
+
+        servicePeople.loadPersonList().then(
+            function(data){
+                $scope.users = data;
+            }
+        );
     };
 
-    $scope.fetchPeopleList = function(unity){
-        if(unity){
-            servicePeople.loadPersonByUnity(unity.unityUrlSafe).then(
-                function(data){
-                    $scope.users = data;
-                    $scope.entityTitle = unity.name;
-                }
-            );
-        }else{
-            $scope.entityTitle = undefined;
-        }
-    };
 
     $scope.goToPersonDetail = function(user){
         $scope.data = user;

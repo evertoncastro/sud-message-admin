@@ -28,18 +28,6 @@
         </fieldset>
 
         <fieldset class="form-group">
-            <label for="exampleInputEmail1">Imagem</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="data.image">
-            <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
-        </fieldset>
-
-        <fieldset class="form-group">
-            <label for="exampleInputEmail1">Visualizador</label>
-            <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{data.image}}">
-        </fieldset>
-
-        <fieldset class="form-group">
             <label>Pessoa:</label>
             <select class="form-control" ng-model="data.personUrlSafe"
                     ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
@@ -53,6 +41,18 @@
                     ng-options="s.value as s.text for s in listStatus">
                 <option value="" selected>Selcione</option>
             </select>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="exampleInputEmail1">Imagem</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="data.image">
+            <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
+            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="exampleInputEmail1">Visualizador</label>
+            <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{data.image}}">
         </fieldset>
 
         <button type="submit" class="btn btn-primary" ng-click="registerMessage(data)">
@@ -83,18 +83,6 @@
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label for="exampleInputEmail1">Imagem</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="message.image">
-                        <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-                        <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                        <label for="exampleInputEmail1">Visualizador</label>
-                        <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{message.image}}">
-                    </fieldset>
-
-                    <fieldset class="form-group">
                         <label>Pessoa:</label>
                         <select class="form-control" ng-model="message.personUrlSafe"
                                 ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
@@ -108,6 +96,18 @@
                                 ng-options="s.value as s.text for s in listStatus">
                             <option value="" selected>Selecione</option>
                         </select>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Imagem</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="message.image">
+                        <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
+                        <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Visualizador</label>
+                        <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{message.image}}">
                     </fieldset>
 
                     <button type="submit" class="btn btn-primary" ng-click="registerMessage(message)">

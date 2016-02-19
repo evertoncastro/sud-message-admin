@@ -17,7 +17,7 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, serv
             }
         );
 
-        servicePeople.loadPeopleList().then(
+        servicePeople.loadPersonList().then(
             function(data){
                 $scope.peopleList = data;
             }
