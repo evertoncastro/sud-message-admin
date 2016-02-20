@@ -29,6 +29,7 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, serv
     };
 
     $scope.openMessage = function(index){
+        serviceMessage.setUploadMode('edit');
         if($scope.showMessage || $scope.showMessage==0){
             $scope.showMessage = undefined;
         }else{

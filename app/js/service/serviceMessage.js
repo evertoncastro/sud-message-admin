@@ -12,6 +12,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
 
         setUploadMode: function(mode){
             uploadMode = mode;
+            console.log(mode);
         },
 
         getUploadMode: function(){
