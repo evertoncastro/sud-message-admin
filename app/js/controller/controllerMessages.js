@@ -1,12 +1,12 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, servicePeople) {
+app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage, servicePeople) {
 
     $scope.showMessage = undefined;
     $scope.showTabMessages = true;
-    $scope.tabTitle = 'MINHAS MENSAGENS';
-    $scope.buttonTitle = 'Criar mensagem';
+    $scope.tabTitle = 'MENSAGENS';
+    $scope.buttonTitle = 'Nova mensagem';
 
     $scope.listStatus = [{text: 'Sim', value: '1'}, {text: 'Não', value: '0'}];
 
@@ -45,8 +45,8 @@ app.controller('MessagesCtrl', function ($scope, $location, serviceMessage, serv
             serviceMessage.setUploadMode('new');
         }else{
             $scope.showTabMessages = true;
-            $scope.tabTitle = 'MINHAS MENSAGENS';
-            $scope.buttonTitle = 'Criar mensagem';
+            $scope.tabTitle = 'MENSAGENS';
+            $scope.buttonTitle = 'Nova mensagem';
             serviceMessage.setUploadMode('edit');
         }
     };

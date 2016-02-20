@@ -4,7 +4,7 @@
 
 var app = angular.module('website');
 
-app.service('serviceUnity', function($q, $http, serviceConstants){
+app.service('serviceUnity', function($q, $http, $rootScope, serviceConstants){
 
     var currentUnity = undefined;
 
@@ -16,6 +16,7 @@ app.service('serviceUnity', function($q, $http, serviceConstants){
 
         setCurrentUnity: function(unity){
             currentUnity = unity;
+            $rootScope.unityNamePage = unity.name;
         },
 
         loadUnityList: function(unityNumber){
