@@ -25,9 +25,13 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var userData = serviceGlobalVariables.getUserData();
             var operation = self.getUploadMode();
             var status = this.validateData(message);
+
+            var thisDate = new Date();
+            thisDate = serviceUtil.parseToString(thisDate, 'dd/mm/aaaa', true);
+
             if(status){
                 var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
-                    status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token};
+                    status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token, thisDate: thisDate};
                 var URL = '';
                 var successMessage = undefined;
                 var failMessage = undefined;

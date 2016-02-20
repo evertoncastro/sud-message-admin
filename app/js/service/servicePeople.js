@@ -4,7 +4,7 @@
 
 var app = angular.module('website');
 
-app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants){
+app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil){
 
     var uploadMode = 'new';
 
@@ -30,10 +30,12 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                 var successMessage = undefined;
                 var failMessage = undefined;
                 if(operation=='new'){
+                    var thisDate = new Date();
+                    thisDate = serviceUtil.parseToString(thisDate, 'dd/mm/aaaa', true);
                     URL = serviceConstants.URL_REGISTER_PERSON;
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_REGISTER_PERSON;
-                    json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image,
+                    json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image, thisDate: thisDate,
                         exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, token: userData.token};
                 }else if(operation=='edit'){
                     URL = serviceConstants.URL_UPDATE_PERSON;
