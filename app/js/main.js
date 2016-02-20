@@ -1,5 +1,5 @@
 
-var app = angular.module('website', ['ngRoute', 'ui.router']);
+var app = angular.module('website', ['ngRoute', 'ui.router', 'ngLoadingSpinner']);
 
 app.config(function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.headers.common = {};

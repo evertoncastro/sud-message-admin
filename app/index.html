@@ -21,13 +21,17 @@
     <script src="lib/angular-ui/angular-ui-router.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
     <script src="js/main.js"></script>
 
     <script src="js/lib/sweetalert.min.js" charset="iso-8859-1"></script>
     <script src="js/lib/alert.js"></script>
+    <script type="text/javascript" src="js/lib/angular-loading-spinner.js"></script>
+    <script type="text/javascript" src="js/lib/angular-spinner-min.js"></script>
 
 </head>
 <body ng-app="website">
+<span class="spinner" us-spinner="{radius:25, width:8, length: 16, scale:3, speed:1.5, shadow:false}"></span>
 
 <!-- futuramente nosso conteudo ficara aqui -->
 <div ng-include='"templates/header.html"'></div>
