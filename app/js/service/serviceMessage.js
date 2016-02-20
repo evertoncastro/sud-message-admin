@@ -4,7 +4,7 @@
 
 var app = angular.module('website');
 
-app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil){
+app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil, serviceUnity){
 
     var uploadMode = 'edit';
 
@@ -25,12 +25,13 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var userData = serviceGlobalVariables.getUserData();
             var operation = self.getUploadMode();
             var status = this.validateData(message);
+            var unityInfo = serviceUnity.getCurrentUnity();
 
             var thisDate = new Date();
             thisDate = serviceUtil.parseToString(thisDate, 'dd/mm/aaaa', true);
 
             if(status){
-                var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
+                var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe, unityNumber: unityInfo.number,
                     status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token, thisDate: thisDate};
                 var URL = '';
                 var successMessage = undefined;
@@ -61,7 +62,8 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
 
         loadMessage: function(){
             var defer = $q.defer();
-            var URL = serviceConstants.URL_LOAD_MESSAGE;
+            var unityInfo = serviceUnity.getCurrentUnity();
+            var URL = serviceConstants.URL_LOAD_MESSAGE+unityInfo.number;
             $http.get(URL).then(
                 function(result){
                     if(result && result.data){

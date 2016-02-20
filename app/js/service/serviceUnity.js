@@ -6,23 +6,34 @@ var app = angular.module('website');
 
 app.service('serviceUnity', function($q, $http, serviceConstants){
 
+    var currentUnity = undefined;
+
     return{
 
-        loadUnityList: function(){
-            var defer = $q.defer();
+        getCurrentUnity: function(){
+            return currentUnity;
+        },
 
-            var URL = serviceConstants.URL_UNITY_LIST;
+        setCurrentUnity: function(unity){
+            currentUnity = unity;
+        },
+
+        loadUnityList: function(unityNumber){
+            var defer = $q.defer();
+            var self = this;
+
+            var URL = serviceConstants.URL_UNITY_LIST+unityNumber;
             $http.get(URL).then(
                 function(result) {
-                    if(result && result.data){
-                        defer.resolve(result.data);
+                    if(result && result.data.name){
+                        self.setCurrentUnity(result.data);
+                        defer.resolve(true);
                     }else{
-                        defer.resolve([]);
+                        defer.resolve(false);
                     }
                 },
                 function(error){
                     defer.reject(error);
-                    callSweetAlert();
                 }
             );
 

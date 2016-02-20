@@ -4,7 +4,7 @@
 
 var app = angular.module('website');
 
-app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil){
+app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil, serviceUnity){
 
     var uploadMode = 'new';
 
@@ -24,6 +24,7 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
             var userData = serviceGlobalVariables.getUserData();
             var operation = self.getUploadMode();
             var status = this.validateData(personInfo, userData);
+            var unityInfo = serviceUnity.getCurrentUnity();
             if(status){
                 var json = {};
                 var URL = '';
@@ -36,14 +37,14 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_REGISTER_PERSON;
                     json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image, thisDate: thisDate,
-                        exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, token: userData.token};
+                        exibitionName: personInfo.exibitionName, unityName: unityInfo.name, unityNumber: unityInfo.number,
+                        token: userData.token};
                 }else if(operation=='edit'){
                     URL = serviceConstants.URL_UPDATE_PERSON;
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_UPDATE_PERSON;
                     json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image,
-                        exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, personUrlSafe: personInfo.personUrlSafe,
-                        token: userData.token};
+                        exibitionName: personInfo.exibitionName, personUrlSafe: personInfo.personUrlSafe, token: userData.token};
                 }
                 $http.post(URL, json).then(
                     function(result){
@@ -66,8 +67,8 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
 
         loadPersonList: function(){
             var defer = $q.defer();
-
-            var URL = serviceConstants.URL_LOAD_PERSON_LIST;
+            var unityInfo = serviceUnity.getCurrentUnity();
+            var URL = serviceConstants.URL_LOAD_PERSON_LIST+unityInfo.number;
             $http.get(URL).then(
                 function(result) {
                     if(result && result.data){

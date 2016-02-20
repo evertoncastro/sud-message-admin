@@ -10,12 +10,12 @@ app.service('serviceConstants', function(){
         URL_REGISTER_MESSAGE: 'http://sudmural.appspot.com/registerMessage',
         //URL_REGISTER_MESSAGE: 'http://localhost:8080/registerMessage',
         URL_UPDATE_MESSAGE: 'http://sudmural.appspot.com/updateMessage',
-        URL_LOAD_MESSAGE: 'http://sudmural.appspot.com/loadMessage',
-        URL_LOAD_PERSON_LIST: 'http://sudmural.appspot.com/loadPersonList',
+        URL_LOAD_MESSAGE: 'http://sudmural.appspot.com/loadMessage?unityNumber=',
+        URL_LOAD_PERSON_LIST: 'http://sudmural.appspot.com/loadPersonList?unityNumber=',
         URL_LOAD_PERSON_BY_UNITY: 'http://sudmural.appspot.com/loadPersonByUnit',
         URL_UPDATE_PERSON: 'http://sudmural.appspot.com/updatePerson',
         URL_REGISTER_PERSON: 'http://sudmural.appspot.com/registerPerson',
-        URL_UNITY_LIST  : 'http://sudmural.appspot.com/loadUnityList',
+        URL_UNITY_LIST  : 'http://sudmural.appspot.com/loadUnityList?unityNumber=',
 
 
         MSG_DEFAULT_ERROR: {
