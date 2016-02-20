@@ -4,7 +4,8 @@
 
 var app = angular.module('website');
 
-app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil, serviceUnity){
+app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants,
+                                      serviceUtil, serviceUnity, $route){
 
     var uploadMode = 'new';
 
@@ -50,7 +51,11 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                     function(result){
                         defer.resolve(result);
                         if(result && result.data.intern){
-                            callSweetAlert(successMessage.title, successMessage.text);
+                            callSweetAlert(successMessage.title, successMessage.text,
+                                function(){
+                                    $route.reload();
+                                }
+                            );
                         }else{
                             callSweetAlert(failMessage.title, failMessage.text);
                         }

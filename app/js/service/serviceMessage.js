@@ -4,7 +4,8 @@
 
 var app = angular.module('website');
 
-app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants, serviceUtil, serviceUnity){
+app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants,
+                                       serviceUtil, serviceUnity, $location, $route){
 
     var uploadMode = 'edit';
 
@@ -47,8 +48,16 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
                 }
                 $http.post(URL, json).then(
                     function(result){
+                        if(result && result.data.intern){
+                            callSweetAlert(successMessage.title, successMessage.text,
+                                function(){
+                                    $route.reload();
+                                }
+                            );
+                        }else{
+                            callSweetAlert(failMessage.title, failMessage.text);
+                        }
                         defer.resolve(result);
-                        callSweetAlert(successMessage.title, successMessage.text);
                     },
                     function(error){
                         defer.reject(error);
