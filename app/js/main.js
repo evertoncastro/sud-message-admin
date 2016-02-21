@@ -10,9 +10,9 @@ app.config(function ($routeProvider, $httpProvider) {
     $routeProvider
         .when("/", {templateUrl: "templates/login.html", controller: "LoginCtrl"})
         .when("/home", {templateUrl: "templates/home.html", controller: "HomeCtrl"})
-        .when("/sobre", {templateUrl: "templates/sobre.html", controller: "SobreCtrl"})
         .when("/messages", {templateUrl: "templates/messages.html", controller: "MessagesCtrl"})
         .when("/people", {templateUrl: "templates/people.html", controller: "PeopleCtrl"})
+        .when("/support", {templateUrl: "templates/support.html"})
         .when('/404', {templateUrl: "templates/404.html"})
         .otherwise("/404");
 });

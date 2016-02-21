@@ -1,11 +1,47 @@
 
+<div class="navbar-wrapper" ng-controller="HeaderCtrl">
+    <div class="" ng-if="showMenu">
+        <nav class="navbar navbar-inverse navbar-static-top nav-custom-header">
+            <div class="container">
+                <div class="navbar-header">
+                    <button ng-if="showMenu" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Sud mural</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/home">Início</a></li>
+                        <li><a href="#/messages">Mensagens</a></li>
+                        <li><a href="#/people">Pessoas</a></li>
+                        <li><a href="#/support">Suporte</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a ng-click="logout()">Sair</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</div>
+
 <div class="brand brand-custom">Mural SUD</div>
+
+
 <!-- Endereço da empresa ou subtitulo do site -->
 
 <!-- Navigation -->
+<!--
 <nav class="navbar navbar-default nav-custom-header" role="navigation" ng-controller="HeaderCtrl">
     <div class="container">
-        <!-- aparecerá somente em dispositivos mobile -->
+        &lt;!&ndash; aparecerá somente em dispositivos mobile &ndash;&gt;
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" ng-if="showMenu"
                     data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -14,13 +50,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- Nome da empresa ou titulo do site para os dispositivos mobile -->
+            &lt;!&ndash; Nome da empresa ou titulo do site para os dispositivos mobile &ndash;&gt;
             <a class="navbar-brand">Mural SUD</a>
         </div>
-        <!-- nossos menu -->
+        &lt;!&ndash; nossos menu &ndash;&gt;
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav" ng-if="showMenu">
-                <!-- cada linha é um item do menu -->
+                &lt;!&ndash; cada linha é um item do menu &ndash;&gt;
                 <li><a href="#/home">Início</a></li>
                 <li><a href="#/messages">Mensagens</a></li>
                 <li><a href="#/people">Pessoas</a></li>
@@ -28,7 +64,7 @@
                 <li><a ng-click="logout()">Sair</a></li>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
+        &lt;!&ndash; /.navbar-collapse &ndash;&gt;
     </div>
-    <!-- /.container -->
-</nav>
+    &lt;!&ndash; /.container &ndash;&gt;
+</nav>-->

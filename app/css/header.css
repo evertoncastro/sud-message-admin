@@ -1,3 +1,11 @@
+@media screen and (min-width: 768px){
+    .nav>li>a {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+}
+
+
 .brand-custom{
     font-size: 4em;
     padding: 10px 0 10px;
@@ -5,4 +13,12 @@
 
 .nav-custom-header{
     margin-bottom: 0px;
+}
+
+.navbar-collapse{
+    border: none;
+}
+
+.navbar-inverse .navbar-toggle {
+    //border-color: #ddd;
 }
