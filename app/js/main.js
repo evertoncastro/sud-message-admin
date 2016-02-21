@@ -1,6 +1,14 @@
 
 var app = angular.module('website', ['ngRoute', 'ui.router', 'ngLoadingSpinner']);
 
+app.run(function($rootScope, $location){
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        if (!current) {
+            $location.path('/');
+        }
+    });
+});
+
 app.config(function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.headers.common = {};
     $httpProvider.defaults.headers.post = {};
@@ -17,17 +25,4 @@ app.config(function ($routeProvider, $httpProvider) {
         .otherwise("/404");
 });
 
-
-
-app.controller('SobreCtrl', function ($scope, $location) {
-
-});
-
-app.controller('ServicosCtrl', function ($scope, $location) {
-
-});
-
-app.controller('PrecosCtrl', function ($scope, $location) {
-
-});
 
