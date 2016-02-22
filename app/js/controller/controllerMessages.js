@@ -1,7 +1,7 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage, servicePeople) {
+app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage, servicePeople, serviceImage, ModalService) {
 
     $scope.showMessage = undefined;
     $scope.showTabMessages = true;
@@ -11,6 +11,7 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
     $scope.listStatus = [{text: 'Sim', value: '1'}, {text: 'Não', value: '0'}];
 
     $scope.init = function(){
+
         serviceMessage.loadMessage().then(
             function(result){
                 $scope.listMessage = result;
@@ -20,6 +21,17 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         servicePeople.loadPersonList().then(
             function(data){
                 $scope.peopleList = data;
+            }
+        );
+    };
+
+    $scope.uploadImage = function(fileread){
+        serviceImage.uploadImage(fileread).then(
+            function(data){
+                if(!$scope.data){
+                    $scope.data = {};
+                }
+                $scope.data.image = data;
             }
         );
     };
@@ -50,6 +62,24 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
             serviceMessage.setUploadMode('edit');
         }
     };
+
+    $scope.showComplex = function() {
+
+        ModalService.showModal({
+            templateUrl: "templates/modal/complex.html",
+            controller: "CtrlComplex",
+            inputs: {
+                title: "A More Complex Example"
+            }
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+                $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+            });
+        });
+
+    };
+
 
     $scope.init();
 

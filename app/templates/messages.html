@@ -46,10 +46,13 @@
 
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Imagem</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="data.image">
-            <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+            <input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">
+            <!--<a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
+            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>-->
         </fieldset>
+        <button class="btn btn-primary" ng-click="uploadImage(fileread)">
+            Testar imagem
+        </button>
 
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Visualizador</label>
@@ -118,6 +121,8 @@
             </div>
         </div>
     </div>
+</div>
 
-
+<div class="row">
+    <button ng-click="showComplex()">Modal</button>
 </div>

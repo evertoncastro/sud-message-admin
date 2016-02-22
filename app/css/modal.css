@@ -1,0 +1,23 @@
+.message-modal-content {
+    height: 900px !important;
+    background-color: transparent;
+}
+
+.message-modal-dialog {
+    width: 100% !important;
+    margin: 0px !important;
+}
+
+.modal-open .modal {
+   padding: 0px 0px 0px 0px !important;
+}
+.modal-header {
+    border: none;
+}
+
+.modal-footer {
+    border: none;
+}
+.portfolio-item{
+    padding: 15px;
+}

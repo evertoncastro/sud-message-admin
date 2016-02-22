@@ -1,5 +1,5 @@
 
-var app = angular.module('website', ['ngRoute', 'ui.router', 'ngLoadingSpinner']);
+var app = angular.module('website', ['ngRoute', 'ui.router', 'ngLoadingSpinner', 'angularModalService']);
 
 app.run(function($rootScope, $location){
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
@@ -23,6 +23,43 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/support", {templateUrl: "templates/support.html"})
         .when('/404', {templateUrl: "templates/404.html"})
         .otherwise("/404");
-});
+})
 
 
+/*
+.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            });
+        }
+    }
+}]);*/
+
+
+.directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                scope.$apply(function () {
+                    scope.fileread = changeEvent.target.files[0];
+                    console.log(JSON.stringify(scope.fileread));
+                    // scope.fileread = changeEvent.target.files;
+                });
+            });
+        }
+    }
+}]);

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/main.css"/>
     <link rel="stylesheet" href="css/home.css"/>
     <link rel="stylesheet" href="css/support.css"/>
+    <link rel="stylesheet" href="css/modal.css"/>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <!--<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">-->
     <link href="css/sweetalert.css" rel="stylesheet" type="text/css">
@@ -25,6 +26,7 @@
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/angular-ui/angular-ui-router.min.js"></script>
     <script src="lib/angular/angular-route.min.js"></script>
+    <script src="js/lib/angular-modal-service.js"></script>
     <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
     <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
     <script src="js/main.js"></script>
@@ -36,7 +38,7 @@
 
 </head>
 <body ng-app="website">
-<span class="spinner" us-spinner="{radius:25, width:8, length: 16, scale:3, speed:1.5, shadow:false}"></span>
+<span class="spinner" us-spinner="{radius:15, width:8, length: 16, scale:2, speed:1.5, shadow:false}"></span>
 
 <!-- futuramente nosso conteudo ficara aqui -->
 <div ng-include='"templates/header.html"'></div>
@@ -53,6 +55,7 @@
 <script src="js/controller/controllerHome.js"></script>
 <script src="js/controller/controllerMessages.js"></script>
 <script src="js/controller/controllerPeople.js"></script>
+<script src="js/controller/controllerComplex.js"></script>
 
 <!--SERVICES-->
 <script src="js/service/serviceUser.js"></script>
@@ -62,6 +65,29 @@
 <script src="js/service/servicePeople.js"></script>
 <script src="js/service/serviceUtil.js"></script>
 <script src="js/service/serviceUnity.js"></script>
+<script src="js/service/serviceImage.js"></script>
+
+
 
 </body>
+
+<script type="text/ng-template" id="modal.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Yes or No?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>It's your call...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
 </html>
