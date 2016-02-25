@@ -5,7 +5,7 @@
 var app = angular.module('website');
 
 app.service('serviceMessage', function($q, serviceGlobalVariables, $http, serviceConstants,
-                                       serviceUtil, serviceUnity, $location, $route){
+                                       serviceUtil, serviceUnity, $location, $route, serviceImage){
 
     var uploadMode = 'edit';
 
@@ -18,6 +18,22 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
 
         getUploadMode: function(){
             return uploadMode;
+        },
+
+        prepareMessageUpload: function(message){
+            var self = this;
+            var uploadImage = serviceImage.getUploadImage();
+            if(uploadImage && message.image){
+                var currentUnity = serviceUnity.getCurrentUnity();
+                serviceImage.uploadImage(message.image, currentUnity.number, 'message_').then(
+                    function(respUrl){
+                        message.image = respUrl;
+                        self.registerMessage(message);
+                    }
+                );
+            }else{
+                self.registerMessage(message);
+            }
         },
 
         registerMessage: function(message){

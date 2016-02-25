@@ -1,3 +1,6 @@
+.row-area{
+    padding: 0px 0px 20% 0px;
+}
 
 .form-create-message{
     padding: 0px 20px;
@@ -12,6 +15,7 @@
     max-height: 200px;
     max-width: 100%;
     width: auto;
+    margin: 20px auto;
 }
 
 .button-tab-area{
@@ -20,4 +24,30 @@
 }
 .button-tab{
     width: 130px;
+}
+.button-submit-area{
+    display: block;
+    text-align: center;
+    margin: 30px 10px 30px 10px;
+}
+.button-submit{
+    width: 100px;
+}
+
+.box-button-control-area{
+    display: block;
+    text-align: center;
+    margin: 50px 0px 50px 0px;
+}
+
+.button-crop-control{
+    width: 100px;
+    margin: 0px 10px 0px 10px;
+    background-color: #555555;
+    border-color: #2b2b2b;
+}
+
+.button-crop-control:hover{
+    background-color: #888888;
+    border-color: #2b2b2b;
 }

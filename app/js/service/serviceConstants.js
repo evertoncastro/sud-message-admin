@@ -17,6 +17,8 @@ app.service('serviceConstants', function(){
         URL_REGISTER_PERSON: 'http://sudmural.appspot.com/registerPerson',
         URL_UNITY_LIST  : 'http://sudmural.appspot.com/loadUnityList?unityNumber=',
 
+        CLOUD_IMAGE_NAME: 'di2ic3sli',
+        CLOUD_UPLOAD_PRESET: 'bfpxfykl',
 
         MSG_DEFAULT_ERROR: {
             text: "Houve um erro no aplicativo",

@@ -3,117 +3,65 @@
         <div class="modal-content message-modal-content">
             <div class="modal-header">
                 <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <!--<h4 class="modal-title">{{title}}</h4>-->
+                <h4 class="modal-title">Configurar imagem</h4>
             </div>
-            <div class="container">
-                <!-- Projects Row -->
-                <div class="row">
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
+
+            <!--<div>
+
+                <div ng-show="imageCropStep == 1">
+                    <br/>
+                    <span>File</span>
+                    <input type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
                 </div>
-                <!-- /.row -->
 
-                <!-- Projects Row -->
-                <div class="row">
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
+                <div ng-show="imageCropStep == 2">
+                    &lt;!&ndash; <image-crop
+                       data-height="200" //shape's height
+                       data-width="150" //shape's width
+                       data-shape="square" //the shape.. square or circle
+                       data-step="imageCropStep"//scope variable that will contain the current step of the crop (1. Waiting for source image; 2. Image loaded, waiting for crop; 3. Crop done)
+                       src="imgSrc" //scope variable that will be the source image for the crop (may be a Blob or base64 string)
+                       data-result-blob="result" //scope variable that will contain the Blob information
+                       data-result="resultDataUrl" //scope variable that will contain the image's base64 string representation
+                       crop="initCrop" //scope variable that must be set to true when the image is ready to be cropped
+                       padding="250" //space, in pixels, rounding the shape
+                       max-size="1024" //max of the image, in pixels
+                     ></image-crop> &ndash;&gt;
+
+                    <image-crop
+                            data-height="200"
+                            data-width="500"
+                            data-shape="square"
+                            data-step="imageCropStep"
+                            src="imgSrc"
+                            data-result="result"
+                            data-result-blob="resultBlob"
+                            crop="initCrop"
+                            padding="50"
+                            max-size="1024">
+                    </image-crop>
                 </div>
-                <!-- /.row -->
 
-                <!-- Projects Row -->
-                <div class="row">
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
-                    <div class="col-md-3 portfolio-item">
-                        <a href="#">
-                            <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                        </a>
-                    </div>
+                <div ng-show="imageCropStep == 2">
+                    <br/>
+                    <button ng-click="clearImageCrop()">Cancel</button>
+                    <button ng-click="initCrop = true">Crop</button>
                 </div>
-                <!-- /.row -->
 
-                <hr>
+                <div ng-show="imageCropStep == 3">
 
-                <!-- Pagination -->
-                <div class="row text-center">
-                    <div class="col-lg-12">
-                        <ul class="pagination">
-                            <li>
-                                <a href="#">&laquo;</a>
-                            </li>
-                            <li class="active">
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">&raquo;</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <h2>Result</h2>
+
+                    <img ng-src="{{result}}">
+                    <p>The Base64 String used in the image above:</p>
+                    <textarea class="result-datauri">{{ result }}</textarea>
+                    <button ng-click="clearImageCrop()">Clear</button>
+                    <button ng-click="copyImageToScope()">Copy</button>
+
                 </div>
-                <!-- /.row -->
 
-            </div>
+            </div>-->
+
             <div class="modal-footer">
                 <button type="button" ng-click="close()" class="btn btn-primary" data-dismiss="modal">OK</button>
                 <button type="button" ng-click="cancel()" class="btn">Cancel</button>

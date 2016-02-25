@@ -1,7 +1,8 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage, servicePeople, serviceImage, ModalService) {
+app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage,
+                                         servicePeople, serviceImage, $timeout) {
 
     $scope.showMessage = undefined;
     $scope.showTabMessages = true;
@@ -23,6 +24,8 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
                 $scope.peopleList = data;
             }
         );
+
+        serviceImage.setUploadImage(false);
     };
 
     $scope.uploadImage = function(fileread){
@@ -37,7 +40,7 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
     };
 
     $scope.registerMessage = function(message){
-        serviceMessage.registerMessage(message);
+        serviceMessage.prepareMessageUpload(message);
     };
 
     $scope.openMessage = function(index){
@@ -63,11 +66,52 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         }
     };
 
-    $scope.showComplex = function() {
+    $scope.fileChanged = function(e) {
+        var files = e.target.files;
+        if($scope.message && $scope.message.image){
+            $scope.message.image = undefined;
+        }
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
 
+        fileReader.onload = function(e) {
+            $scope.imgSrc = this.result;
+            $scope.$apply();
+        };
+
+    };
+
+    $scope.clearImageCrop = function() {
+        $scope.imageCropStep = 1;
+        delete $scope.imgSrc;
+        delete $scope.resultBlob;
+        if($scope.message && $scope.message.image){
+            $scope.message.image = undefined;
+        }
+    };
+
+    $scope.copyImageToScope = function() {
+        if(!$scope.message){
+            $scope.message = {};
+        }
+        $scope.message.image = $scope.imgSrc;
+        $scope.imageCropStep = 1;
+    };
+
+    $scope.cropImage = function(){
+        $scope.initCrop = true;
+        $scope.imageCropStep = 1;
+        $timeout(function() {
+            delete $scope.imgSrc;
+            delete $scope.resultBlob;
+        }, 3000);
+        serviceImage.setUploadImage(true);
+    };
+
+    /*$scope.showComplex = function() {
         ModalService.showModal({
             templateUrl: "templates/modal/complex.html",
-            controller: "CtrlComplex",
+            controller: "MessagesCtrl",
             inputs: {
                 title: "A More Complex Example"
             }
@@ -77,8 +121,15 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
                 $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
             });
         });
+    };*/
 
-    };
+
+   /* $scope.close = function() {
+        close({
+            name: $scope.name,
+            age: $scope.age
+        }, 500);
+    };*/
 
 
     $scope.init();

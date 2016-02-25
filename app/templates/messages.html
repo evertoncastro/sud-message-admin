@@ -15,22 +15,22 @@
 </div>
 
 
-<div class="row" ng-if="!showTabMessages">
+<div class="row row-area" ng-if="!showTabMessages">
     <!--Take from: http://v4-alpha.getbootstrap.com/components/forms/-->
     <form class="form-create-message">
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Título da mensagem</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="data.title">
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" ng-model="message.title">
             <!--<small class="text-muted">We'll never share your email with anyone else.</small>-->
         </fieldset>
         <fieldset class="form-group">
             <label for="exampleTextarea">Mensagem</label>
-            <textarea class="form-control" id="exampleTextarea" rows="6" ng-model="data.text"></textarea>
+            <textarea class="form-control" id="exampleTextarea" rows="6" ng-model="message.text"></textarea>
         </fieldset>
 
         <fieldset class="form-group">
             <label>Pessoa:</label>
-            <select class="form-control" ng-model="data.personUrlSafe"
+            <select class="form-control" ng-model="message.personUrlSafe"
                     ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
                 <option value="" selected>Selecione uma pessoa relacionada</option>
             </select>
@@ -38,7 +38,7 @@
 
         <fieldset class="form-group">
             <label>Exibir:</label>
-            <select class="form-control" ng-model="data.status"
+            <select class="form-control" ng-model="message.status"
                     ng-options="s.value as s.text for s in listStatus">
                 <option value="" selected>Selecione</option>
             </select>
@@ -46,26 +46,45 @@
 
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Imagem</label>
-            <input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">
-            <!--<a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-            <small class="text-muted"> Em seguida cole a URL no campo acima.</small>-->
+            <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+            <small class="text-muted">A imagem deve ter 500 x 300 px.</small>
+            <small class="text-muted">Ou ajuste a imagem após escolhe-la.</small>
+            <!--<input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">-->
         </fieldset>
-        <button class="btn btn-primary" ng-click="uploadImage(fileread)">
+
+        <fieldset class="form-group" ng-if="message.image">
+            <!--<label for="exampleInputEmail1">Visualizador</label>-->
+            <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{message.image}}">
+        </fieldset>
+
+        <div class="button-submit-area">
+            <button type="submit" class="btn btn-primary button-submit" ng-click="registerMessage(message)">
+                Criar
+            </button>
+        </div>
+
+        <div ng-show="imageCropStep == 2">
+            <image-crop
+                    data-height="300" data-width="500"
+                    data-shape="square" data-step="imageCropStep" src="imgSrc" data-result="message.image"
+                    crop="initCrop" padding="50" max-size="1024">
+            </image-crop>
+        </div>
+
+        <div ng-show="imageCropStep == 2">
+            <div class="box-button-control-area">
+                <button class="btn btn-primary button-crop-control" ng-click="cropImage()">Cortar</button>
+                <button class="btn btn-primary button-crop-control" ng-click="clearImageCrop()">Cancelar</button>
+            </div>
+        </div>
+        <!--<button class="btn btn-primary" ng-click="uploadImage(fileread)">
             Testar imagem
-        </button>
+        </button>-->
 
-        <fieldset class="form-group">
-            <label for="exampleInputEmail1">Visualizador</label>
-            <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{data.image}}">
-        </fieldset>
-
-        <button type="submit" class="btn btn-primary" ng-click="registerMessage(data)">
-            Criar
-        </button>
     </form>
 </div>
 
-<div class="row" ng-if="showTabMessages">
+<div class="row row-area" ng-if="showTabMessages">
     <div class="box">
         <div class="col-lg-12">
             <div class="list-group" ng-repeat="message in listMessage track by $index">
@@ -104,25 +123,45 @@
 
                     <fieldset class="form-group">
                         <label for="exampleInputEmail1">Imagem</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="URL" ng-model="message.image">
-                        <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-                        <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+                        <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+                        <small class="text-muted">A imagem deve ter 500 x 300 px.</small>
+                        <small class="text-muted">Ou ajuste a imagem após escolhe-la.</small>
+                        <!--<input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">-->
                     </fieldset>
 
-                    <fieldset class="form-group">
-                        <label for="exampleInputEmail1">Visualizador</label>
+                    <fieldset class="form-group" ng-if="message.image">
+                        <!--<label for="exampleInputEmail1">Visualizador</label>-->
                         <img class="form-control box-image-preview" id="exampleInputEmail1" ng-src="{{message.image}}">
                     </fieldset>
 
-                    <button type="submit" class="btn btn-primary" ng-click="registerMessage(message)">
-                        Atualizar
-                    </button>
+                    <div class="button-submit-area">
+                        <button type="submit" class="btn btn-primary button-submit" ng-click="registerMessage(message)">
+                            Atualizar
+                        </button>
+                    </div>
+
+                    <div ng-show="imageCropStep == 2">
+                        <image-crop
+                                data-height="180" data-width="300"
+                                data-shape="square" data-step="imageCropStep" src="imgSrc" data-result="message.image"
+                                crop="initCrop" padding="100" max-size="300">
+                        </image-crop>
+                    </div>
+
+                    <div ng-show="imageCropStep == 2">
+                        <div class="box-button-control-area">
+                            <button class="btn btn-primary button-crop-control" ng-click="cropImage()">Cortar</button>
+                            <button class="btn btn-primary button-crop-control" ng-click="clearImageCrop()">Cancelar</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
+<!--<div class="row">
     <button ng-click="showComplex()">Modal</button>
-</div>
+</div>-->
+
+
