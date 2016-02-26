@@ -20,12 +20,16 @@ app.service('serviceImage', function($q, $http, serviceConstants){
             var defer = $q.defer();
             var self = this;
 
+            var date = new Date();
+            //date =  date.toString().replace(/ /g,'');
+
             var cloud_name = serviceConstants.CLOUD_IMAGE_NAME;
             var fd = new FormData();
 
             fd.append('upload_preset', serviceConstants.CLOUD_UPLOAD_PRESET);
             fd.append('folder', album+unity);
             fd.append('file', file);
+            fd.append('public_id', date);
 
             $http.post('https://api.cloudinary.com/v1_1/' + cloud_name + '/image/upload', fd, {
                     headers: {
@@ -39,48 +43,10 @@ app.service('serviceImage', function($q, $http, serviceConstants){
                 })
                 .error(function (reponse) {
                     defer.reject(reponse);
+                    console.log(JSON.stringify(reponse));
                 });
 
             return defer.promise;
         }
-
-        /*uploadImage: function(file) {
-            var defer = $q.defer();
-            var URL = 'https://api.imgur.com/3/image';
-            var headers = {'Authorization': 'Client-ID 8208c4b5f89b7c6'};
-
-            $http({headers: headers, url: URL, method: 'POST', data: file}).then(
-                function (response) {
-                    if(response && response.data.data.link){
-                        defer.resolve(response.data.data.link);
-                    }else{
-                        defer.resolve();
-                    }
-                },
-                function (error) {
-                    console.log(error.data.data.error);
-                    defer.reject(error);
-                }
-            );
-
-            return defer.promise;
-        },*/
-
-
-        /*getAuthorization: function(){
-            var defer = $q.defer();
-            var URL = 'https://api.imgur.com/oauth2/authorize?client_id=eb9ffeba8218f3a&response_type=token&state=APPLICATION_STATE';
-
-            $http.get(URL).then(
-                function(response){
-                    console.log(response);
-                },
-                function(){
-                    console.log(error);
-                }
-            );
-
-            return defer.promise;
-        }*/
     }
 });

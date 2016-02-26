@@ -1,7 +1,7 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeople, serviceUnity) {
+app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeople, serviceUnity, serviceImage) {
 
 
     $scope.showList = true;
@@ -42,7 +42,50 @@ app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeopl
     };
 
     $scope.registerPerson = function(data){
-        servicePeople.uploadPerson(data);
+        servicePeople.preparePersonUpload(data);
+    };
+
+
+    $scope.fileChanged = function(e) {
+        var files = e.target.files;
+        if($scope.data && $scope.data.image){
+            $scope.data.image = undefined;
+        }
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(files[0]);
+
+        fileReader.onload = function(e) {
+            $scope.imgSrc = this.result;
+            $scope.$apply();
+        };
+
+    };
+
+    $scope.clearImageCrop = function() {
+        $scope.imageCropStep = 1;
+        delete $scope.imgSrc;
+        delete $scope.resultBlob;
+        if($scope.data && $scope.data.image){
+            $scope.data.image = undefined;
+        }
+    };
+
+    $scope.copyImageToScope = function() {
+        if(!$scope.data){
+            $scope.data = {};
+        }
+        $scope.data.image = $scope.imgSrc;
+        $scope.imageCropStep = 1;
+    };
+
+    $scope.cropImage = function(){
+        $scope.initCrop = true;
+        $scope.imageCropStep = 1;
+        $timeout(function() {
+            delete $scope.imgSrc;
+            delete $scope.resultBlob;
+        }, 3000);
+        serviceImage.setUploadImage(true);
     };
 
 

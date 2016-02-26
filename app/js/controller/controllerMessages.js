@@ -108,30 +108,6 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         serviceImage.setUploadImage(true);
     };
 
-    /*$scope.showComplex = function() {
-        ModalService.showModal({
-            templateUrl: "templates/modal/complex.html",
-            controller: "MessagesCtrl",
-            inputs: {
-                title: "A More Complex Example"
-            }
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
-            });
-        });
-    };*/
-
-
-   /* $scope.close = function() {
-        close({
-            name: $scope.name,
-            age: $scope.age
-        }, 500);
-    };*/
-
-
     $scope.init();
 
 });

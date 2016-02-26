@@ -50,22 +50,41 @@
         <div class="row">
             <!-- left column -->
             <div class="col-md-3">
-                <div class="text-center">
+                <div class="text-center" ng-if="data.image">
                     <img ng-src="{{data.image}}" class="avatar img-circle avatar-edit" alt="avatar">
 
-                    <input type="text" class="form-control" ng-model="data.image">
+                    <!--<input type="text" class="form-control" ng-model="data.image">-->
                 </div>
-                <a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
-                <small class="text-muted"> Em seguida cole a URL no campo acima.</small>
+                <!--<a class="link-create-url" href="http://tinypic.com/" target="_blank">Crie uma URL da sua imagem!</a>
+                <small class="text-muted"> Em seguida cole a URL no campo acima.</small>-->
+
+                <fieldset class="form-group">
+                    <label for="exampleInputEmail1">Imagem</label>
+                    <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
+                    <small class="text-muted">A imagem deve ter 120 x 100 px.</small>
+                    <small class="text-muted">Ou ajuste a imagem após escolhe-la.</small>
+                    <!--<input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">-->
+                </fieldset>
+
+                <div ng-show="imageCropStep == 2">
+                    <image-crop
+                            data-height="120" data-width="100" type="jpg"
+                            data-shape="square" data-step="imageCropStep" src="imgSrc" data-result="data.image"
+                            crop="initCrop" padding="50" max-size="200">
+                    </image-crop>
+                </div>
+
+                <div ng-show="imageCropStep == 2">
+                    <div class="box-button-control-area">
+                        <button class="btn btn-primary button-crop-control" ng-click="cropImage()">Cortar</button>
+                        <button class="btn btn-primary button-crop-control" ng-click="clearImageCrop()">Cancelar</button>
+                    </div>
+                </div>
+
             </div>
 
             <!-- edit form column -->
             <div class="col-md-9 personal-info">
-                <!--<div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
-                    <i class="fa fa-coffee"></i>
-                    This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                </div>-->
 
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
@@ -86,17 +105,6 @@
                             <input class="form-control" ng-model="data.exibitionName" type="text" value="">
                         </div>
                     </div>
-
-                    <!--<div class="form-group">
-                        <label class="col-lg-3 control-label">Unidade:</label>
-                        <div class="col-lg-8">
-                            <select class="form-control" ng-model="data.unityName"
-                                    ng-options="u.name as u.name for u in listUnity">
-                                <option value="" selected>Selecione uma unidade</option>
-                            </select>
-                        </div>
-                    </div>-->
-
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">

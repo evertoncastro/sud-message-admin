@@ -5,7 +5,7 @@
 var app = angular.module('website');
 
 app.service('servicePeople', function($q, serviceGlobalVariables, $http, serviceConstants,
-                                      serviceUtil, serviceUnity, $route){
+                                      serviceUtil, serviceUnity, $route, serviceImage){
 
     var uploadMode = 'new';
 
@@ -17,6 +17,22 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
 
         getUploadMode: function(){
             return uploadMode;
+        },
+
+        preparePersonUpload: function(personInfo){
+            var self = this;
+            var uploadImage = serviceImage.getUploadImage();
+            if(uploadImage && personInfo.image){
+                var currentUnity = serviceUnity.getCurrentUnity();
+                serviceImage.uploadImage(personInfo.image, currentUnity.number, 'person_').then(
+                    function(respUrl){
+                        personInfo.image = respUrl;
+                        self.uploadPerson(personInfo);
+                    }
+                );
+            }else{
+                self.uploadPerson(personInfo);
+            }
         },
 
         uploadPerson: function(personInfo){
