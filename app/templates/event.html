@@ -39,6 +39,13 @@
             <input type="text" masktime="masktime" maxlength="5" placeholder="Exemplo: 09:30" class="form-control" ng-model="event.time">
         </fieldset>
         <fieldset class="form-group">
+            <label>Exibição:</label>
+            <select class="form-control" ng-model="event.display"
+                    ng-options="s.value as s.text for s in listDisplay">
+                <option value="" selected>Selecione</option>
+            </select>
+        </fieldset>
+        <fieldset class="form-group">
             <label for="exampleInputEmail1">Imagem</label>
             <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
             <small class="text-muted">A imagem deve ter 500 x 300 px.</small>
@@ -84,7 +91,8 @@
             <div class="list-group" ng-repeat="event in listEvent track by $index">
                 <a class="list-group-item" ng-click="openEvent($index)">
                     <h4 class="list-group-item-heading">{{event.title}}</h4>
-                    <p class="list-group-item-text" ng-if="event.dateShow===event.date">{{event.dateShow}}</p>
+                    <span class="list-group-item-text" ng-if="event.dateShow===event.date">{{event.dateShow}}</span>
+                    <span ng-if="event.display=='banner'" style="color: red">Banner</span>
                 </a>
 
                 <!--Take from: http://v4-alpha.getbootstrap.com/components/forms/-->
@@ -108,6 +116,13 @@
                     <fieldset class="form-group">
                         <label>horário:</label>
                         <input type="text" class="form-control" masktime="" placeholder="Exemplo: 09:30" maxlength="5" ng-model="event.time">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Exibição:</label>
+                        <select class="form-control" ng-model="event.display"
+                                ng-options="s.value as s.text for s in listDisplay">
+                            <option value="" selected>Selecione</option>
+                        </select>
                     </fieldset>
                     <fieldset class="form-group">
                         <label for="exampleInputEmail1">Imagem</label>

@@ -67,6 +67,11 @@ app.service('serviceConstants', function(){
             title: "Tente novamente!"
         },
 
+        MSG_EMPTY_EVENT_DISPLAY: {
+            text: "Selecione um modo de exibição para o evento.",
+            title: "Tente novamente!"
+        },
+
         MSG_ALERT_FAIL_LOGIN: {
             text: "E-mail ou senha foram informados incorretamente.",
             title: "Tente novamente!"

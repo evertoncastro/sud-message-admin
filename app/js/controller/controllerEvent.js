@@ -10,6 +10,7 @@ app.controller('EventCtrl', function ($rootScope, $scope, $location, serviceEven
     $scope.buttonTitle = 'NOVO EVENTO';
 
     $scope.listStatus = [{text: 'Sim', value: '1'}, {text: 'Não', value: '0'}];
+    $scope.listDisplay = [{text: 'Normal', value: 'default'}, {text: 'Banner', value: 'banner'}];
 
     $scope.init = function(){
         serviceEvent.loadEvent().then(

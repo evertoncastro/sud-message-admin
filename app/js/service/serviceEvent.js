@@ -51,7 +51,7 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
                     event.date = '';
                 }
                 var json = {title: event.title, place: event.place, image: event.image, description: event.description,
-                    unityNumber: unityInfo.number, date: event.date, time: event.time,
+                    unityNumber: unityInfo.number, date: event.date, time: event.time, display: event.display,
                     token: userData.token, eventUrlSafe: event.eventUrlSafe};
                 var URL = '';
                 var successEvent = undefined;
@@ -127,6 +127,10 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
             else if(!event || serviceUtil.isEmpty(event.time) || (event.time.length<5)){
                 status = false;
                 callSweetAlert(serviceConstants.MSG_EMPTY_EVENT_TIME.title, serviceConstants.MSG_EMPTY_EVENT_TIME.text);
+            }
+            else if(!event || serviceUtil.isEmpty(event.display)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_EVENT_DISPLAY.title, serviceConstants.MSG_EMPTY_EVENT_DISPLAY.text);
             }
 
             return status;
