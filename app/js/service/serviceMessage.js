@@ -49,7 +49,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
 
             if(status){
                 var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe, unityNumber: unityInfo.number,
-                    status: message.status, personUrlSafe: message.personUrlSafe, token: userData.token, thisDate: thisDate};
+                    status: message.status, display: message.display, personUrlSafe: message.personUrlSafe, token: userData.token, thisDate: thisDate};
                 var URL = '';
                 var successMessage = undefined;
                 var failMessage = undefined;
@@ -124,6 +124,10 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             else if(!message || serviceUtil.isEmpty(message.status)){
                 status = false;
                 callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_STATUS.title, serviceConstants.MSG_EMPTY_MESSAGE_STATUS.text);
+            }
+            else if(!message || serviceUtil.isEmpty(message.display)){
+                status = false;
+                callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_DISPLAY.title, serviceConstants.MSG_EMPTY_MESSAGE_DISPLAY.text);
             }
 
             return status;

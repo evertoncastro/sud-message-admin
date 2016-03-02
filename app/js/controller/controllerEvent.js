@@ -1,22 +1,20 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceMessage,
+app.controller('EventCtrl', function ($rootScope, $scope, $location, serviceEvent,
                                          servicePeople, serviceImage, $timeout) {
 
-    $scope.showMessage = undefined;
-    $scope.showTabMessages = true;
-    $scope.tabTitle = 'MENSAGENS';
-    $scope.buttonTitle = 'Nova mensagem';
+    $scope.showEvent = undefined;
+    $scope.showTabEvents = true;
+    $scope.tabTitle = 'EVENTOS';
+    $scope.buttonTitle = 'NOVO EVENTO';
 
     $scope.listStatus = [{text: 'Sim', value: '1'}, {text: 'Não', value: '0'}];
-    $scope.listDisplay = [{text: 'Normal', value: 'default'}, {text: 'Banner', value: 'banner'}];
 
     $scope.init = function(){
-
-        serviceMessage.loadMessage().then(
+        serviceEvent.loadEvent().then(
             function(result){
-                $scope.listMessage = result;
+                $scope.listEvent = result;
             }
         );
 
@@ -40,37 +38,38 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         );
     };
 
-    $scope.registerMessage = function(message){
-        serviceMessage.prepareMessageUpload(message);
+    $scope.registerEvent = function(event){
+        serviceEvent.prepareEventUpload(event);
     };
 
-    $scope.openMessage = function(index){
-        serviceMessage.setUploadMode('edit');
-        if($scope.showMessage || $scope.showMessage==0){
-            $scope.showMessage = undefined;
+    $scope.openEvent = function(index){
+        serviceEvent.setUploadMode('edit');
+        if($scope.showEvent || $scope.showEvent==0){
+            $scope.showEvent = undefined;
         }else{
-            $scope.showMessage = index;
+            $scope.showEvent = index;
         }
     };
 
     $scope.changeTab = function(){
-        if($scope.showTabMessages){
-            $scope.showTabMessages = false;
-            $scope.tabTitle = 'CRIAR MENSAGEM';
-            $scope.buttonTitle = 'Voltar';
-            serviceMessage.setUploadMode('new');
+        if($scope.showTabEvents){
+            $scope.showTabEvents = false;
+            $scope.tabTitle = 'CRIAR EVENTO';
+            $scope.buttonTitle = 'VOLTAR';
+            serviceEvent.setUploadMode('new');
         }else{
-            $scope.showTabMessages = true;
-            $scope.tabTitle = 'MENSAGENS';
-            $scope.buttonTitle = 'Nova mensagem';
-            serviceMessage.setUploadMode('edit');
+            $scope.showTabEvents = true;
+            $scope.tabTitle = 'EVENTOS';
+            $scope.buttonTitle = 'NOVO EVENTO';
+            serviceEvent.setUploadMode('edit');
         }
     };
 
+
     $scope.fileChanged = function(e) {
         var files = e.target.files;
-        if($scope.message && $scope.message.image){
-            $scope.message.image = undefined;
+        if($scope.event && $scope.event.image){
+            $scope.event.image = undefined;
         }
         var fileReader = new FileReader();
         fileReader.readAsDataURL(files[0]);
@@ -86,16 +85,16 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         $scope.imageCropStep = 1;
         delete $scope.imgSrc;
         delete $scope.resultBlob;
-        if($scope.message && $scope.message.image){
-            $scope.message.image = undefined;
+        if($scope.event && $scope.event.image){
+            $scope.event.image = undefined;
         }
     };
 
     $scope.copyImageToScope = function() {
-        if(!$scope.message){
-            $scope.message = {};
+        if(!$scope.event){
+            $scope.event = {};
         }
-        $scope.message.image = $scope.imgSrc;
+        $scope.event.image = $scope.imgSrc;
         $scope.imageCropStep = 1;
     };
 
@@ -111,4 +110,8 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
 
     $scope.init();
 
+
+    String.prototype.splice = function(idx, rem, str) {
+        return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+    };
 });

@@ -20,6 +20,7 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/home", {templateUrl: "templates/home.html", controller: "HomeCtrl"})
         .when("/messages", {templateUrl: "templates/messages.html", controller: "MessagesCtrl"})
         .when("/people", {templateUrl: "templates/people.html", controller: "PeopleCtrl"})
+        .when("/event", {templateUrl: "templates/event.html", controller: "EventCtrl"})
         .when("/support", {templateUrl: "templates/support.html"})
         .when('/404', {templateUrl: "templates/404.html"})
         .otherwise("/404");
@@ -41,4 +42,45 @@ app.config(function ($routeProvider, $httpProvider) {
             });
         }
     }
-}]);
+}])
+
+.directive('masktime', function () {
+    return {
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            if (!ngModelCtrl) {
+                return;
+            }
+
+            ngModelCtrl.$parsers.push(function (val) {
+                var clean = val.replace(/[^0-9\.]+/g, '');
+
+                String.prototype.splice = function(start, delCount, newSubStr) {
+                    return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+                };
+
+                if(clean.length>3){
+                    if(Number(clean)>2359){
+                        clean = '0';
+                        callSweetAlert('Aviso', 'Siga o padrão 00:00 para horário!')
+                    }else{
+                        clean = clean.splice(2, 0, ':');
+                    }
+                }
+
+                if (val !== clean) {
+                    ngModelCtrl.$setViewValue(clean);
+                    ngModelCtrl.$render();
+                }
+
+                return clean;
+            });
+
+            element.bind('keypress', function (event) {
+                if (event.keyCode === 32) {
+                    event.preventDefault();
+                }
+            });
+        }
+    };
+});
