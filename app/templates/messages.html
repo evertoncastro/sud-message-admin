@@ -55,7 +55,7 @@
         <fieldset class="form-group">
             <label for="exampleInputEmail1">Imagem</label>
             <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
-            <small class="text-muted">A imagem deve ter 500 x 300 px.</small>
+            <small class="text-muted">A imagem deve ter 300 x 180 px.</small>
             <small class="text-muted">Ou ajuste a imagem após escolhe-la.</small>
             <!--<input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">-->
         </fieldset>
@@ -73,7 +73,7 @@
 
         <div ng-show="imageCropStep == 2">
             <image-crop
-                    data-height="300" data-width="500"
+                    data-height="180" data-width="300"
                     data-shape="square" data-step="imageCropStep" src="imgSrc" data-result="message.image"
                     crop="initCrop" padding="50" max-size="1024">
             </image-crop>
@@ -141,7 +141,7 @@
                     <fieldset class="form-group">
                         <label for="exampleInputEmail1">Imagem</label>
                         <input class="form-control" type="file" name="fileInput" id="fileInput" onchange="angular.element(this).scope().fileChanged(event)" />
-                        <small class="text-muted">A imagem deve ter 500 x 300 px.</small>
+                        <small class="text-muted">A imagem deve ter 300 x 180 px.</small>
                         <small class="text-muted">Ou ajuste a imagem após escolhe-la.</small>
                         <!--<input type="file" fileread="fileread" class="form-control" id="exampleInputEmail1">-->
                     </fieldset>
