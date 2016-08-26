@@ -54,14 +54,19 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_REGISTER_PERSON;
                     json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image, thisDate: thisDate,
-                        exibitionName: personInfo.exibitionName, unityName: unityInfo.name, unityNumber: unityInfo.number,
-                        token: userData.token};
+                        exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, calling: personInfo.calling, token: userData.token};
                 }else if(operation=='edit'){
                     URL = serviceConstants.URL_UPDATE_PERSON;
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_UPDATE_PERSON;
-                    json = {firstname: personInfo.firstname, lastname: personInfo.lastname, image: personInfo.image,
-                        exibitionName: personInfo.exibitionName, personUrlSafe: personInfo.personUrlSafe, token: userData.token};
+                    json = {firstname: personInfo.firstname, lastname: personInfo.lastname,
+                        exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, calling: personInfo.calling,
+                        personUrlSafe: personInfo.personUrlSafe, token: userData.token};
+
+                    var uploadImage = serviceImage.getUploadImage();
+                    if(uploadImage){
+                        json.image = personInfo.image;
+                    }
                 }
                 $http.post(URL, json).then(
                     function(result){

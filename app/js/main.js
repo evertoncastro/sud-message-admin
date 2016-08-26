@@ -20,6 +20,7 @@ app.config(function ($routeProvider, $httpProvider) {
         .when("/home", {templateUrl: "templates/home.html", controller: "HomeCtrl"})
         .when("/messages", {templateUrl: "templates/messages.html", controller: "MessagesCtrl"})
         .when("/people", {templateUrl: "templates/people.html", controller: "PeopleCtrl"})
+        .when("/missionary", {templateUrl: "templates/missionary.html", controller: "MissionaryCtrl"})
         .when("/event", {templateUrl: "templates/event.html", controller: "EventCtrl"})
         .when("/support", {templateUrl: "templates/support.html"})
         .when('/404', {templateUrl: "templates/404.html"})

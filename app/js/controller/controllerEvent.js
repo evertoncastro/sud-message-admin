@@ -13,6 +13,7 @@ app.controller('EventCtrl', function ($rootScope, $scope, $location, serviceEven
     $scope.listDisplay = [{text: 'Normal', value: 'default'}, {text: 'Banner', value: 'banner'}];
 
     $scope.init = function(){
+
         serviceEvent.loadEvent().then(
             function(result){
                 $scope.listEvent = result;

@@ -10,5 +10,4 @@ app.controller('HeaderCtrl', function ($scope, $rootScope, serviceUser) {
         serviceUser.makeLogout();
     }
 
-
 });

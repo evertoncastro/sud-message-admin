@@ -23,9 +23,10 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
         prepareMessageUpload: function(message){
             var self = this;
             var uploadImage = serviceImage.getUploadImage();
+            message.newimage = uploadImage;
             if(uploadImage && message.image){
                 var currentUnity = serviceUnity.getCurrentUnity();
-                serviceImage.uploadImage(message.image, currentUnity.number, 'message_').then(
+                serviceImage.uploadImage(message.image).then(
                     function(respUrl){
                         message.image = respUrl;
                         self.registerMessage(message);
@@ -48,8 +49,9 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             thisDate = serviceUtil.parseToString(thisDate, 'dd/mm/aaaa', true);
 
             if(status){
-                var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe, unityNumber: unityInfo.number,
-                    status: message.status, display: message.display, personUrlSafe: message.personUrlSafe, token: userData.token, thisDate: thisDate};
+                var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
+                    status: message.status, display: message.display, personUrlSafe: message.personUrlSafe, newimage: message.newimage,
+                    token: userData.token, thisDate: thisDate};
                 var URL = '';
                 var successMessage = undefined;
                 var failMessage = undefined;

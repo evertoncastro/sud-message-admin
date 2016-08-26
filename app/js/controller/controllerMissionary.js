@@ -1,7 +1,7 @@
 /**
  * Created by everton on 03/02/16.
  */
-app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeople, serviceUnity, serviceImage) {
+app.controller('MissionaryCtrl', function ($timeout, $scope, $location, serviceMissionary, serviceUnity, servicePeople, serviceImage) {
 
 
     $scope.showList = true;
@@ -10,33 +10,32 @@ app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeopl
     $scope.entityTitle = undefined;
 
     $scope.init = function(){
+        $scope.listUnity = serviceUnity.getUnityList();
+
         /*serviceUnity.loadFullUnityList().then(
             function(data){
                 $scope.listUnity = data;
             }
         );*/
-        $scope.listUnity = serviceUnity.getUnityList();
 
-        servicePeople.loadPersonList().then(
+        serviceMissionary.loadMissionaryList().then(
             function(data){
-                $scope.users = data;
+                $scope.listMissionary = data;
             }
         );
-
-        serviceImage.setUploadImage(false);
     };
 
 
-    $scope.goToPersonDetail = function(user){
+    $scope.goToMissionaryDetail = function(user){
         $scope.data = user;
         $scope.showList = false;
-        servicePeople.setUploadMode('edit');
+        serviceMissionary.setUploadMode('edit');
     };
 
-    $scope.goToNewPerson = function(){
+    $scope.goToNewMissionary = function(){
         $scope.data = {};
         $scope.showList = false;
-        servicePeople.setUploadMode('new');
+        serviceMissionary.setUploadMode('new');
     };
 
     $scope.returnToList = function(){
@@ -44,8 +43,8 @@ app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeopl
         $scope.showList = true;
     };
 
-    $scope.registerPerson = function(data){
-        servicePeople.preparePersonUpload(data);
+    $scope.registerMissionary = function(data){
+        serviceMissionary.prepareMissionaryUpload(data);
     };
 
 

@@ -9,6 +9,7 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
     $scope.tabTitle = 'MENSAGENS';
     $scope.buttonTitle = 'Nova mensagem';
 
+    $scope.message = {};
     $scope.listStatus = [{text: 'Sim', value: '1'}, {text: 'Não', value: '0'}];
     $scope.listDisplay = [{text: 'Normal', value: 'default'}, {text: 'Banner', value: 'banner'}];
 
@@ -69,8 +70,8 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
 
     $scope.fileChanged = function(e) {
         var files = e.target.files;
-        if($scope.message && $scope.message.image){
-            $scope.message.image = undefined;
+        if($scope.data && $scope.data.image){
+            $scope.data.image = undefined;
         }
         var fileReader = new FileReader();
         fileReader.readAsDataURL(files[0]);
@@ -86,16 +87,16 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         $scope.imageCropStep = 1;
         delete $scope.imgSrc;
         delete $scope.resultBlob;
-        if($scope.message && $scope.message.image){
-            $scope.message.image = undefined;
+        if($scope.data && $scope.data.image){
+            $scope.data.image = undefined;
         }
     };
 
     $scope.copyImageToScope = function() {
-        if(!$scope.message){
-            $scope.message = {};
+        if(!$scope.data){
+            $scope.data = {};
         }
-        $scope.message.image = $scope.imgSrc;
+        $scope.data.image = $scope.imgSrc;
         $scope.imageCropStep = 1;
     };
 

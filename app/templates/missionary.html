@@ -4,29 +4,26 @@
             <span class="unity-name-page">Mural {{unityNamePage}}</span>
             <hr>
             <h2 class="intro-text text-center">
-                Pessoas
+                Missionários
             </h2>
             <hr>
         </div>
     </div>
     <div class="button-tab-area">
-        <button class="btn btn-primary button-tab" ng-click="goToNewPerson()" >Nova pessoa</button>
+        <button class="btn btn-primary button-tab" ng-click="goToNewMissionary()" >Novo missionário</button>
     </div>
 </div>
-
 
 <div class="row" ng-if="showList">
     <div class="container">
         <div id="products" class="row list-group">
-            <div class="item  col-xs-12 col-lg-12" ng-repeat="user in users" ng-click="goToPersonDetail(user)">
+            <div class="item  col-xs-12 col-lg-12" ng-repeat="missionary in listMissionary" ng-click="goToMissionaryDetail(missionary)">
                 <div class="thumbnail list-item">
-                    <img class="group list-group-image image-person-list" ng-src="{{user.image}}" alt="" />
+                    <img class="group list-group-image image-person-list" ng-src="{{missionary.image}}" alt="" />
                     <div class="caption user-info-list">
-                        <h4 class="group inner list-group-item-heading">{{user.exibitionName}}</h4>
+                        <h4 class="group inner list-group-item-heading">{{missionary.exibitionName}}</h4>
                         <p class="group inner list-group-item-text">
-                            {{user.unityName}}</p>
-                        <p class="group inner list-group-item-text">
-                            {{user.calling}}</p>
+                            {{missionary.unityName}}</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +33,7 @@
 
 <div class="row" ng-if="!showList">
     <div class="container">
-        <h1 class="edit-title">Editar informações</h1>
+        <h1 class="edit-title">Informações</h1>
         <hr>
         <div class="row">
             <!-- left column -->
@@ -96,15 +93,6 @@
                             <input class="form-control" ng-model="data.exibitionName" type="text" value="">
                         </div>
                     </div>
-                    <!--<div class="form-group">
-                        <label class="col-lg-3 control-label">Ala:</label>
-                        <div class="col-lg-8">
-                            <select class="form-control" ng-model="data.unityName"
-                                    ng-options="p.name as p.name for p in listUnity">
-                                <option value="" selected>Selecione </option>
-                            </select>
-                        </div>
-                    </div>-->
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Ala:</label>
                         <div class="col-lg-8">
@@ -115,15 +103,33 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">Chamado:</label>
+                        <label class="col-lg-3 control-label">Missão:</label>
                         <div class="col-lg-8">
-                            <input class="form-control" ng-model="data.calling" type="text" value="">
+                            <input class="form-control" ng-model="data.mission" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Email:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" ng-model="data.email" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Endereço:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" ng-model="data.address" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Tempo de serviço:</label>
+                        <div class="col-lg-8">
+                            <input class="form-control" ng-model="data.period_serving" type="text" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" ng-click="registerPerson(data)" value="Enviar">
+                            <input type="button" class="btn btn-primary" ng-click="registerMissionary(data)" value="Enviar">
                             <span></span>
                             <input type="reset" class="btn btn-default" ng-click="returnToList()" value="Voltar">
                         </div>

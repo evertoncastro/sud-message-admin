@@ -51,7 +51,7 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
                     event.date = '';
                 }
                 var json = {title: event.title, place: event.place, image: event.image, description: event.description,
-                    unityNumber: unityInfo.number, date: event.date, time: event.time, display: event.display,
+                    date: event.date, time: event.time, display: event.display,
                     token: userData.token, eventUrlSafe: event.eventUrlSafe};
                 var URL = '';
                 var successEvent = undefined;

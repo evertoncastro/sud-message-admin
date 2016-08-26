@@ -4,21 +4,27 @@
 
 app.service('serviceConstants', function(){
 
-    return{
-        URL_LOGIN: 'http://sudmural.appspot.com/doLogin',
-        URL_REGISTER_MESSAGE: 'http://sudmural.appspot.com/registerMessage',
-        URL_UPDATE_MESSAGE: 'http://sudmural.appspot.com/updateMessage',
-        URL_LOAD_MESSAGE: 'http://sudmural.appspot.com/loadMessage?unityNumber=',
-        URL_REGISTER_EVENT: 'http://sudmural.appspot.com/registerEvent',
-        URL_UPDATE_EVENT: 'http://sudmural.appspot.com/updateEvent',
-        URL_LOAD_EVENT: 'http://sudmural.appspot.com/loadEvent?unityNumber=',
-        URL_LOAD_PERSON_LIST: 'http://sudmural.appspot.com/loadPersonList?unityNumber=',
-        URL_LOAD_PERSON_BY_UNITY: 'http://sudmural.appspot.com/loadPersonByUnit',
-        URL_UPDATE_PERSON: 'http://sudmural.appspot.com/updatePerson',
-        URL_REGISTER_PERSON: 'http://sudmural.appspot.com/registerPerson',
-        URL_UNITY_LIST  : 'http://sudmural.appspot.com/loadUnityList?unityNumber=',
+    //var URL_BASE = 'localhost:8080';
+    var URL_BASE = 'http://sudmural.appspot.com';
 
-        CLOUD_IMAGE_NAME: 'di2ic3sli',
+    return{
+        URL_LOGIN: URL_BASE+'/doLogin',
+        URL_REGISTER_MESSAGE: URL_BASE+'/registerMessage',
+        URL_UPDATE_MESSAGE: URL_BASE+'/updateMessage',
+        URL_LOAD_MESSAGE: URL_BASE+'/loadMessage?unityNumber=',
+        URL_REGISTER_EVENT: URL_BASE+'/registerEvent',
+        URL_UPDATE_EVENT: URL_BASE+'/updateEvent',
+        URL_LOAD_EVENT: URL_BASE+'/loadEvent?unityNumber=',
+        URL_LOAD_PERSON_LIST: URL_BASE+'/loadPersonList?unityNumber=',
+        URL_LOAD_MISSIONARY_LIST: URL_BASE+'/loadMissionaryList',
+        URL_LOAD_PERSON_BY_UNITY: URL_BASE+'/loadPersonByUnit',
+        URL_UPDATE_PERSON: URL_BASE+'/updatePerson',
+        URL_REGISTER_PERSON: URL_BASE+'/registerPerson',
+        URL_UNITY_LIST  : URL_BASE+'/loadUnityList?unityNumber=',
+        URL_FULL_UNITY_LIST  : URL_BASE+'/loadFullUnityList',
+        URL_REGISTER_MISSIONARY: URL_BASE+'/registerMissionary',
+        URL_UPDATE_MISSIONARY: URL_BASE+'/updateMissionary',
+
         CLOUD_UPLOAD_PRESET: 'bfpxfykl',
 
         MSG_DEFAULT_ERROR: {
@@ -141,7 +147,36 @@ app.service('serviceConstants', function(){
         MSG_NO_PERSON_FOR_UNITY: {
             text: "Não há pessoas cadastradas nesta unidade",
             title: "Alerta!"
-        }
+        },
+
+        MSG_ALERT_SUCCESS_REGISTER_MISSIONARY: {
+            text: "Missionário criado com sucesso!",
+            title: "Parabéns :)"
+        },
+
+        MSG_ALERT_FAILURE_REGISTER_MISSIONARY: {
+            text: "Houve um erro ao criar missionário!",
+            title: "Tente novamente!"
+        },
+
+        MSG_ALERT_SUCCESS_UPDATE_MISSIONARY: {
+            text: "Dados atualizados com sucesso!",
+            title: "Parabéns :)"
+        },
+
+        MSG_ALERT_FAILURE_UPDATE_MISSIONARY: {
+            text: "Houve um erro ao atualizar dados!",
+            title: "Tente novamente!"
+        },
+
+        INCOMPLETE_MISSIONARY_DATA: {
+            text: "Antes de continuar verifique se todas as informações do missionário foram preenchidas!",
+            title: "Ops!"
+        },
+
+
+        LIST_UNITY: ['Magine', 'Parque das Américas', 'Pilar']
+
 
     }
 });
