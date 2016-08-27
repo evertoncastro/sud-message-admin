@@ -22,18 +22,21 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
 
         prepareEventUpload: function(event){
             var self = this;
-            var uploadImage = serviceImage.getUploadImage();
-            if(uploadImage && event.image){
-                var currentUnity = serviceUnity.getCurrentUnity();
-                serviceImage.uploadImage(event.image, currentUnity.number, 'event_').then(
-                    function(respUrl){
-                        event.image = respUrl;
-                        self.registerEvent(event);
-                    }
-                );
-            }else{
-                self.registerEvent(event);
+            var status = this.validateData(event);
+            if(status){
+                var uploadImage = serviceImage.getUploadImage();
+                if(uploadImage && event.image){
+                    serviceImage.uploadImage(event.image).then(
+                        function(respUrl){
+                            event.image = respUrl;
+                            self.registerEvent(event);
+                        }
+                    );
+                }else{
+                    self.registerEvent(event);
+                }
             }
+
         },
 
         registerEvent: function(event){
@@ -44,46 +47,55 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
             var status = this.validateData(event);
             var unityInfo = serviceUnity.getCurrentUnity();
 
-            if(status){
-                if(event.date.constructor===Date){
-                    event.date = serviceUtil.parseToString(event.date, 'dd/mm/aaaa', true);
-                }else{
-                    event.date = '';
-                }
-                var json = {title: event.title, place: event.place, image: event.image, description: event.description,
+
+            if(event.date.constructor===Date){
+                event.date = serviceUtil.parseToString(event.date, 'dd/mm/aaaa', true);
+            }else{
+                event.date = '';
+            }
+            var json = {};
+            var URL = '';
+            var successEvent = undefined;
+            var failEvent = undefined;
+            if(operation=='new'){
+                json = {title: event.title, place: event.place, image: event.image, description: event.description,
                     date: event.date, time: event.time, display: event.display,
                     token: userData.token, eventUrlSafe: event.eventUrlSafe};
-                var URL = '';
-                var successEvent = undefined;
-                var failEvent = undefined;
-                if(operation=='new'){
-                    URL = serviceConstants.URL_REGISTER_EVENT;
-                    successEvent = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_EVENT;
-                    failEvent = serviceConstants.MSG_ALERT_FAILURE_REGISTER_EVENT;
-                }else if(operation=='edit'){
-                    URL = serviceConstants.URL_UPDATE_EVENT;
-                    successEvent = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_EVENT;
-                    failEvent = serviceConstants.MSG_ALERT_FAILURE_UPDATE_EVENT;
+                URL = serviceConstants.URL_REGISTER_EVENT;
+                successEvent = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_EVENT;
+                failEvent = serviceConstants.MSG_ALERT_FAILURE_REGISTER_EVENT;
+            }else if(operation=='edit'){
+                json = {title: event.title, place: event.place, description: event.description,
+                    date: event.date, time: event.time, display: event.display,
+                    token: userData.token, eventUrlSafe: event.eventUrlSafe};
+                URL = serviceConstants.URL_UPDATE_EVENT;
+                successEvent = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_EVENT;
+                failEvent = serviceConstants.MSG_ALERT_FAILURE_UPDATE_EVENT;
+                var uploadImage = serviceImage.getUploadImage();
+                if(uploadImage){
+                    json.image = event.image;
                 }
-                $http.post(URL, json).then(
-                    function(result){
-                        if(result && result.data.intern){
-                            callSweetAlert(successEvent.title, successEvent.text,
-                                function(){
-                                    $route.reload();
-                                }
-                            );
-                        }else{
-                            callSweetAlert(failEvent.title, failEvent.text);
-                        }
-                        defer.resolve(result);
-                    },
-                    function(error){
-                        defer.reject(error);
+                serviceImage.setUploadImage(false);
+            }
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data.intern){
+                        callSweetAlert(successEvent.title, successEvent.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }else{
                         callSweetAlert(failEvent.title, failEvent.text);
                     }
-                );
-            }
+                    defer.resolve(result);
+                },
+                function(error){
+                    defer.reject(error);
+                    callSweetAlert(failEvent.title, failEvent.text);
+                }
+            );
+
             return defer.promise;
         },
 
