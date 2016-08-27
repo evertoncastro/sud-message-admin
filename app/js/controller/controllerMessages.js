@@ -45,6 +45,10 @@ app.controller('MessagesCtrl', function ($rootScope, $scope, $location, serviceM
         serviceMessage.prepareMessageUpload(message);
     };
 
+    $scope.deleteMessage = function(message){
+        serviceMessage.deleteMessage(message)
+    };
+
     $scope.openMessage = function(index){
         serviceMessage.setUploadMode('edit');
         if($scope.showMessage || $scope.showMessage==0){

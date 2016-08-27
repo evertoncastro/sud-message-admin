@@ -155,6 +155,10 @@
                         <button type="submit" class="btn btn-primary button-submit" ng-click="registerMessage(message)">
                             Atualizar
                         </button>
+                        <a class="btn btn-danger button-delete" ng-click="deleteMessage(message)">
+                            <i class="icon-trash icon-white"></i>
+                            Excluir
+                        </a>
                     </div>
 
                     <div ng-show="imageCropStep == 2">
@@ -177,8 +181,5 @@
     </div>
 </div>
 
-<!--<div class="row">
-    <button ng-click="showComplex()">Modal</button>
-</div>-->
 
 

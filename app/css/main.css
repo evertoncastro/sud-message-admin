@@ -1,3 +1,7 @@
+body{
+    overflow-y:scroll;
+}
+
 .unity-name-page{
     display: block;
     text-align: center;
@@ -7,4 +11,16 @@
 
 .spinner{
     background-color: #101010;
+}
+
+.button-submit{
+    width: 80px;
+}
+
+.button-back{
+    width: 80px;
+}
+
+.button-delete{
+    width: 80px;
 }

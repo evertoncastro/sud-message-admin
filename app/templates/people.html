@@ -123,9 +123,12 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8">
-                            <input type="button" class="btn btn-primary" ng-click="registerPerson(data)" value="Enviar">
-                            <span></span>
-                            <input type="reset" class="btn btn-default" ng-click="returnToList()" value="Voltar">
+                            <input type="button" class="btn btn-primary button-submit" ng-click="registerPerson(data)" value="Enviar">
+                            <a class="btn btn-danger button-delete">
+                                <i class="icon-trash icon-white"></i>
+                                Excluir
+                            </a>
+                            <input type="reset" class="btn btn-default button-back" ng-click="returnToList()" value="Voltar">
                         </div>
                     </div>
                 </form>

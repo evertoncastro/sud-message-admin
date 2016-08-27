@@ -8,7 +8,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
                                        serviceUtil, serviceUnity, $location, $route, serviceImage){
 
     var uploadMode = 'edit';
-
+    var _message = undefined;
     return{
 
         setUploadMode: function(mode){
@@ -111,6 +111,40 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
                 function(error){
                     defer.reject(error);
                     callSweetAlert();
+                }
+            );
+
+            return defer.promise;
+        },
+
+        deleteMessageConfirmation: function(message){
+            var _deleteMessage = this.deleteMessage;
+            _message = message;
+            callSweetConfirm(serviceConstants.MSG_CONFIRM_MESSAGE_DELETE.title,
+                serviceConstants.MSG_CONFIRM_MESSAGE_DELETE.text, _deleteMessage
+            );
+        },
+
+        deleteMessage: function(message){
+            var defer = $q.defer();
+            var userData = serviceGlobalVariables.getUserData();
+            var URL = serviceConstants.URL_DELETE_MESSAGE;
+            var json = {token: userData.token, id: message.id};
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data){
+                        defer.resolve(result.data);
+                        callSweetAlert(serviceConstants.MSG_DELETE_SUCESS.title,
+                            serviceConstants.MSG_DELETE_SUCESS.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }
+                }, function(error){
+                    console.log(error);
+                    callSweetAlert(serviceConstants.MSG_DEFAULT_ERROR.title,
+                        serviceConstants.MSG_DEFAULT_ERROR.text);
                 }
             );
 

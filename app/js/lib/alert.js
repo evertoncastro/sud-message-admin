@@ -24,11 +24,23 @@ var callSweetAlert = function(title, text, success, failure){
     );
 };
 
-var callSweetConfirm = function(title, text){
+var callSweetConfirm = function(title, text, success){
     var objectMessage = {
         title: title,
         text: text,
         showCancelButton: true, cancelButtonText: 'Não', confirmButtonColor: "#DD6B55", confirmButtonText: "Ok"
     };
-    swal(objectMessage);
+    swal(objectMessage,
+        function(isConfirm){
+            if(isConfirm){
+                if(success){
+                    success()
+                }
+
+            }else{
+                if(failure){
+                    failure();
+                }
+            }
+        });
 };

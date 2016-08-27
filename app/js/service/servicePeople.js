@@ -60,7 +60,7 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
                     successMessage = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_PERSON;
                     failMessage = serviceConstants.MSG_ALERT_FAILURE_UPDATE_PERSON;
                     json = {firstname: personInfo.firstname, lastname: personInfo.lastname,
-                        exibitionName: personInfo.exibitionName, unityName: personInfo.unityName, calling: personInfo.calling,
+                        exibitionName: personInfo.exibitionName, id: personInfo.id, calling: personInfo.calling,
                         personUrlSafe: personInfo.personUrlSafe, token: userData.token};
 
                     var uploadImage = serviceImage.getUploadImage();

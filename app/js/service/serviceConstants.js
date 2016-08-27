@@ -12,6 +12,7 @@ app.service('serviceConstants', function(){
         URL_REGISTER_MESSAGE: URL_BASE+'/registerMessage',
         URL_UPDATE_MESSAGE: URL_BASE+'/updateMessage',
         URL_LOAD_MESSAGE: URL_BASE+'/loadMessage?unityNumber=',
+        URL_DELETE_MESSAGE: URL_BASE+'/deleteMessage',
         URL_REGISTER_EVENT: URL_BASE+'/registerEvent',
         URL_UPDATE_EVENT: URL_BASE+'/updateEvent',
         URL_LOAD_EVENT: URL_BASE+'/loadEvent?unityNumber=',
@@ -28,7 +29,7 @@ app.service('serviceConstants', function(){
         CLOUD_UPLOAD_PRESET: 'bfpxfykl',
 
         MSG_DEFAULT_ERROR: {
-            text: "Houve um erro no aplicativo",
+            text: "Houve um erro de comunicação com o servidor",
             title: "Tente novamente!"
         },
         MSG_EMPTY_MESSAGE_TITLE: {
@@ -101,6 +102,16 @@ app.service('serviceConstants', function(){
         MSG_ALERT_FAILURE_UPDATE_MESSAGE: {
             text: "Houve um erro atualizar dados!",
             title: "Tente novamente!"
+        },
+
+        MSG_CONFIRM_MESSAGE_DELETE: {
+            text: "Tem certeza que deseja excluir esta mensagem?",
+            title: "Confirmação"
+        },
+
+        MSG_DELETE_SUCESS: {
+            text: "Mensagem excluída com sucesso.",
+            title: "Aviso"
         },
 
         MSG_ALERT_SUCCESS_REGISTER_EVENT: {
