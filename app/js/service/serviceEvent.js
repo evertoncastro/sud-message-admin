@@ -60,14 +60,14 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
             if(operation=='new'){
                 json = {title: event.title, place: event.place, image: event.image, description: event.description,
                     date: event.date, time: event.time, display: event.display,
-                    token: userData.token, eventUrlSafe: event.eventUrlSafe};
+                    token: userData.token, id: event.id};
                 URL = serviceConstants.URL_REGISTER_EVENT;
                 successEvent = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_EVENT;
                 failEvent = serviceConstants.MSG_ALERT_FAILURE_REGISTER_EVENT;
             }else if(operation=='edit'){
                 json = {title: event.title, place: event.place, description: event.description,
                     date: event.date, time: event.time, display: event.display,
-                    token: userData.token, eventUrlSafe: event.eventUrlSafe};
+                    token: userData.token, id: event.id};
                 URL = serviceConstants.URL_UPDATE_EVENT;
                 successEvent = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_EVENT;
                 failEvent = serviceConstants.MSG_ALERT_FAILURE_UPDATE_EVENT;

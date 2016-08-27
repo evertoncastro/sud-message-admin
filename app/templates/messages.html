@@ -1,7 +1,7 @@
 <div class="row">
     <div class="box">
         <div class="col-lg-12">
-            <span class="unity-name-page">Mural {{unityNamePage}}</span>
+            <span class="unity-name-page">Mural Estaca Mauá</span>
             <hr>
             <h2 class="intro-text text-center">
                 {{tabTitle}}
@@ -30,8 +30,8 @@
 
         <fieldset class="form-group">
             <label>Pessoa:</label>
-            <select class="form-control" ng-model="message.personUrlSafe"
-                    ng-options="p.personUrlSafe as p.exibitionName for p in peopleList">
+            <select class="form-control" ng-model="message.person_id"
+                    ng-options="p.id as p.exibitionName for p in peopleList">
                 <option value="" selected>Selecione uma pessoa relacionada</option>
             </select>
         </fieldset>

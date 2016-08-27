@@ -23,18 +23,21 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
         prepareMessageUpload: function(message){
             var self = this;
             var uploadImage = serviceImage.getUploadImage();
-            message.newimage = uploadImage;
-            if(uploadImage && message.image){
-                var currentUnity = serviceUnity.getCurrentUnity();
-                serviceImage.uploadImage(message.image).then(
-                    function(respUrl){
-                        message.image = respUrl;
-                        self.registerMessage(message);
-                    }
-                );
-            }else{
-                self.registerMessage(message);
+            var status = this.validateData(message);
+            if(status){
+                if(uploadImage && message.image){
+                    var currentUnity = serviceUnity.getCurrentUnity();
+                    serviceImage.uploadImage(message.image).then(
+                        function(respUrl){
+                            message.image = respUrl;
+                            self.registerMessage(message);
+                        }
+                    );
+                }else{
+                    self.registerMessage(message);
+                }
             }
+
         },
 
         registerMessage: function(message){
@@ -42,47 +45,53 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             var self = this;
             var userData = serviceGlobalVariables.getUserData();
             var operation = self.getUploadMode();
-            var status = this.validateData(message);
-            var unityInfo = serviceUnity.getCurrentUnity();
 
             var thisDate = new Date();
             thisDate = serviceUtil.parseToString(thisDate, 'dd/mm/aaaa', true);
 
-            if(status){
-                var json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
-                    status: message.status, display: message.display, personUrlSafe: message.personUrlSafe, newimage: message.newimage,
+            var json = {};
+            var URL = '';
+            var successMessage = undefined;
+            var failMessage = undefined;
+            if(operation=='new'){
+                json = {title: message.title, text: message.text, image: message.image, urlsafe: message.urlsafe,
+                    status: message.status, display: message.display, person_id: message.person_id, newimage: message.newimage,
                     token: userData.token, thisDate: thisDate};
-                var URL = '';
-                var successMessage = undefined;
-                var failMessage = undefined;
-                if(operation=='new'){
-                    URL = serviceConstants.URL_REGISTER_MESSAGE;
-                    successMessage = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_MESSAGE;
-                    failMessage = serviceConstants.MSG_ALERT_FAILURE_REGISTER_MESSAGE;
-                }else if(operation=='edit'){
-                    URL = serviceConstants.URL_UPDATE_MESSAGE;
-                    successMessage = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_MESSAGE;
-                    failMessage = serviceConstants.MSG_ALERT_FAILURE_UPDATE_MESSAGE;
+                URL = serviceConstants.URL_REGISTER_MESSAGE;
+                successMessage = serviceConstants.MSG_ALERT_SUCCESS_REGISTER_MESSAGE;
+                failMessage = serviceConstants.MSG_ALERT_FAILURE_REGISTER_MESSAGE;
+            }else if(operation=='edit'){
+                json = {id: message.id, title: message.title, text: message.text, image: message.image,
+                    status: message.status, display: message.display, person_id: message.person_id, token: userData.token,
+                    thisDate: thisDate};
+                URL = serviceConstants.URL_UPDATE_MESSAGE;
+                successMessage = serviceConstants.MSG_ALERT_SUCCESS_UPDATE_MESSAGE;
+                failMessage = serviceConstants.MSG_ALERT_FAILURE_UPDATE_MESSAGE;
+                var uploadImage = serviceImage.getUploadImage();
+                if(uploadImage){
+                    json.image = message.image;
                 }
-                $http.post(URL, json).then(
-                    function(result){
-                        if(result && result.data.intern){
-                            callSweetAlert(successMessage.title, successMessage.text,
-                                function(){
-                                    $route.reload();
-                                }
-                            );
-                        }else{
-                            callSweetAlert(failMessage.title, failMessage.text);
-                        }
-                        defer.resolve(result);
-                    },
-                    function(error){
-                        defer.reject(error);
+                serviceImage.setUploadImage(false);
+            }
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data.intern){
+                        callSweetAlert(successMessage.title, successMessage.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }else{
                         callSweetAlert(failMessage.title, failMessage.text);
                     }
-                );
-            }
+                    defer.resolve(result);
+                },
+                function(error){
+                    defer.reject(error);
+                    callSweetAlert(failMessage.title, failMessage.text);
+                }
+            );
+
             return defer.promise;
         },
 
@@ -119,7 +128,7 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
                 status = false;
                 callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_TEXT.title, serviceConstants.MSG_EMPTY_MESSAGE_TEXT.text);
             }
-            else if(!message || serviceUtil.isEmpty(message.personUrlSafe)){
+            else if(!message || serviceUtil.isEmpty(message.person_id)){
                 status = false;
                 callSweetAlert(serviceConstants.MSG_EMPTY_MESSAGE_PEOPLE.title, serviceConstants.MSG_EMPTY_MESSAGE_PEOPLE.text);
             }
