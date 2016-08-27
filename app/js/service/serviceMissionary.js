@@ -99,6 +99,32 @@ app.service('serviceMissionary', function($q, serviceGlobalVariables, $http, ser
             return defer.promise;
         },
 
+        deleteMissionary: function(missionary){
+            var defer = $q.defer();
+            var userData = serviceGlobalVariables.getUserData();
+            var URL = serviceConstants.URL_DELETE_MISSIONARY;
+            var json = {token: userData.token, id: missionary.id};
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data){
+                        defer.resolve(result.data);
+                        callSweetAlert(serviceConstants.MSG_DELETE_MISSIONARY_SUCESS.title,
+                            serviceConstants.MSG_DELETE_MISSIONARY_SUCESS.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }
+                }, function(error){
+                    console.log(error);
+                    callSweetAlert(serviceConstants.MSG_DEFAULT_ERROR.title,
+                        serviceConstants.MSG_DEFAULT_ERROR.text);
+                }
+            );
+
+            return defer.promise;
+        },
+
 
         loadMissionaryList: function(){
             var defer = $q.defer();

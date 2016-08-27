@@ -48,6 +48,9 @@ app.controller('PeopleCtrl', function ($timeout, $scope, $location, servicePeopl
         servicePeople.preparePersonUpload(data);
     };
 
+    $scope.deletePerson = function(person){
+        servicePeople.deletePerson(person);
+    };
 
     $scope.fileChanged = function(e) {
         var files = e.target.files;

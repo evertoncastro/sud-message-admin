@@ -16,15 +16,18 @@ app.service('serviceConstants', function(){
         URL_REGISTER_EVENT: URL_BASE+'/registerEvent',
         URL_UPDATE_EVENT: URL_BASE+'/updateEvent',
         URL_LOAD_EVENT: URL_BASE+'/loadEvent?unityNumber=',
+        URL_DELETE_EVENT: URL_BASE+'/deleteEvent',
         URL_LOAD_PERSON_LIST: URL_BASE+'/loadPersonList?unityNumber=',
         URL_LOAD_MISSIONARY_LIST: URL_BASE+'/loadMissionaryList',
         URL_LOAD_PERSON_BY_UNITY: URL_BASE+'/loadPersonByUnit',
         URL_UPDATE_PERSON: URL_BASE+'/updatePerson',
         URL_REGISTER_PERSON: URL_BASE+'/registerPerson',
+        URL_DELETE_PERSON: URL_BASE+'/deletePerson',
         URL_UNITY_LIST  : URL_BASE+'/loadUnityList?unityNumber=',
         URL_FULL_UNITY_LIST  : URL_BASE+'/loadFullUnityList',
         URL_REGISTER_MISSIONARY: URL_BASE+'/registerMissionary',
         URL_UPDATE_MISSIONARY: URL_BASE+'/updateMissionary',
+        URL_DELETE_MISSIONARY: URL_BASE+'/deleteMissionary',
 
         CLOUD_UPLOAD_PRESET: 'bfpxfykl',
 
@@ -134,6 +137,10 @@ app.service('serviceConstants', function(){
             title: "Tente novamente!"
         },
 
+        MSG_DELETE_EVENT_SUCESS: {
+            text: "Evento excluído com sucesso.",
+            title: "Aviso"
+        },
 
         MSG_ALERT_SUCCESS_REGISTER_PERSON: {
             text: "Pessoa criada com sucesso!",
@@ -153,6 +160,11 @@ app.service('serviceConstants', function(){
         MSG_ALERT_FAILURE_UPDATE_PERSON: {
             text: "Houve um erro ao atualizar dados!",
             title: "Tente novamente!"
+        },
+
+        MSG_DELETE_PERSON_SUCESS: {
+            text: "Pessoa excluída com sucesso.",
+            title: "Aviso"
         },
 
         MSG_NO_PERSON_FOR_UNITY: {
@@ -178,6 +190,11 @@ app.service('serviceConstants', function(){
         MSG_ALERT_FAILURE_UPDATE_MISSIONARY: {
             text: "Houve um erro ao atualizar dados!",
             title: "Tente novamente!"
+        },
+
+        MSG_DELETE_MISSIONARY_SUCESS: {
+            text: "Missionário excluído com sucesso.",
+            title: "Aviso"
         },
 
         INCOMPLETE_MISSIONARY_DATA: {

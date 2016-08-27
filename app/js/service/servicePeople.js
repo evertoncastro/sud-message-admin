@@ -90,6 +90,32 @@ app.service('servicePeople', function($q, serviceGlobalVariables, $http, service
             return defer.promise;
         },
 
+        deletePerson: function(person){
+            var defer = $q.defer();
+            var userData = serviceGlobalVariables.getUserData();
+            var URL = serviceConstants.URL_DELETE_PERSON;
+            var json = {token: userData.token, id: person.id};
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data){
+                        defer.resolve(result.data);
+                        callSweetAlert(serviceConstants.MSG_DELETE_PERSON_SUCESS.title,
+                            serviceConstants.MSG_DELETE_PERSON_SUCESS.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }
+                }, function(error){
+                    console.log(error);
+                    callSweetAlert(serviceConstants.MSG_DEFAULT_ERROR.title,
+                        serviceConstants.MSG_DEFAULT_ERROR.text);
+                }
+            );
+
+            return defer.promise;
+        },
+
 
         loadPersonList: function(){
             var defer = $q.defer();

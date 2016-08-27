@@ -117,14 +117,6 @@ app.service('serviceMessage', function($q, serviceGlobalVariables, $http, servic
             return defer.promise;
         },
 
-        deleteMessageConfirmation: function(message){
-            var _deleteMessage = this.deleteMessage;
-            _message = message;
-            callSweetConfirm(serviceConstants.MSG_CONFIRM_MESSAGE_DELETE.title,
-                serviceConstants.MSG_CONFIRM_MESSAGE_DELETE.text, _deleteMessage
-            );
-        },
-
         deleteMessage: function(message){
             var defer = $q.defer();
             var userData = serviceGlobalVariables.getUserData();

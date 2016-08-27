@@ -99,6 +99,32 @@ app.service('serviceEvent', function($q, serviceGlobalVariables, $http, serviceC
             return defer.promise;
         },
 
+        deleteEvent: function(event){
+            var defer = $q.defer();
+            var userData = serviceGlobalVariables.getUserData();
+            var URL = serviceConstants.URL_DELETE_EVENT;
+            var json = {token: userData.token, id: event.id};
+            $http.post(URL, json).then(
+                function(result){
+                    if(result && result.data){
+                        defer.resolve(result.data);
+                        callSweetAlert(serviceConstants.MSG_DELETE_EVENT_SUCESS.title,
+                            serviceConstants.MSG_DELETE_EVENT_SUCESS.text,
+                            function(){
+                                $route.reload();
+                            }
+                        );
+                    }
+                }, function(error){
+                    console.log(error);
+                    callSweetAlert(serviceConstants.MSG_DEFAULT_ERROR.title,
+                        serviceConstants.MSG_DEFAULT_ERROR.text);
+                }
+            );
+
+            return defer.promise;
+        },
+
 
         loadEvent: function(){
             var defer = $q.defer();

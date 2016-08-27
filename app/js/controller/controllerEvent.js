@@ -44,6 +44,10 @@ app.controller('EventCtrl', function ($rootScope, $scope, $location, serviceEven
         serviceEvent.prepareEventUpload(event);
     };
 
+    $scope.deleteEvent = function(event){
+        serviceEvent.deleteEvent(event);
+    };
+
     $scope.openEvent = function(index){
         serviceEvent.setUploadMode('edit');
         if($scope.showEvent || $scope.showEvent==0){

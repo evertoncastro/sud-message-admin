@@ -47,6 +47,10 @@ app.controller('MissionaryCtrl', function ($timeout, $scope, $location, serviceM
         serviceMissionary.prepareMissionaryUpload(data);
     };
 
+    $scope.deleteMissionary = function(missionary){
+        serviceMissionary.deleteMissionary(missionary);
+    };
+
 
     $scope.fileChanged = function(e) {
         var files = e.target.files;
